@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "npm --prefix product-website run dev"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "framer-motion": "^13.1.0",
+    "lucide-react": "^1.31.0",
+    "tailwindcss": "^4.3.3"
+  }
+}
