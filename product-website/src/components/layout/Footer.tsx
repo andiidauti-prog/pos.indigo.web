@@ -2,9 +2,16 @@ import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { LanguageSelector } from '@/components/ui/LanguageSelector'
-import { footerLinkGroups, REQUEST_DEMO_LABEL } from '@/data/navigation'
+import { footerLinkGroups } from '@/data/navigation'
+import { useTranslations } from '@/lib/locale-context'
+
+const footerGroupLabelKey = {
+  product: 'productGroup',
+  company: 'companyGroup',
+} as const
 
 export function Footer() {
+  const t = useTranslations()
   const year = new Date().getFullYear()
 
   return (
@@ -16,14 +23,14 @@ export function Footer() {
               onlinePOS
             </Link>
             <Button variant="outline" size="sm" className="w-fit">
-              {REQUEST_DEMO_LABEL}
+              {t.nav.requestDemo}
             </Button>
           </div>
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
             {footerLinkGroups.map((group) => (
-              <div key={group.title} className="flex flex-col gap-3">
-                <h3 className="text-sm font-semibold text-ink">{group.title}</h3>
+              <div key={group.id} className="flex flex-col gap-3">
+                <h3 className="text-sm font-semibold text-ink">{t.footer[footerGroupLabelKey[group.id]]}</h3>
                 <ul className="flex flex-col gap-2">
                   {group.links.map((link) => (
                     <li key={link.to}>
@@ -31,7 +38,7 @@ export function Footer() {
                         to={link.to}
                         className="focus-ring rounded-sm text-sm text-ink-muted transition-colors hover:text-ink"
                       >
-                        {link.label}
+                        {t.nav[link.id]}
                       </Link>
                     </li>
                   ))}
@@ -40,14 +47,14 @@ export function Footer() {
             ))}
 
             <div className="flex flex-col gap-3">
-              <h3 className="text-sm font-semibold text-ink">Languages</h3>
+              <h3 className="text-sm font-semibold text-ink">{t.footer.languagesLabel}</h3>
               <LanguageSelector variant="inline" />
             </div>
           </div>
         </div>
 
         <div className="border-t border-border pt-6 text-sm text-ink-subtle">
-          © {year} onlinePOS. All rights reserved.
+          {t.footer.copyright.replace('{year}', String(year))}
         </div>
       </Container>
     </footer>

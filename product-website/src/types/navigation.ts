@@ -1,9 +1,11 @@
+import type { FooterGroupId, NavItemId } from '@/types/i18n'
+
 export interface NavItem {
-  label: string
+  id: NavItemId
   to: string
 }
 
 export interface FooterLinkGroup {
-  title: string
+  id: FooterGroupId
   links: NavItem[]
 }

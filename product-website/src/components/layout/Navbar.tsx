@@ -5,10 +5,12 @@ import { cn } from '@/lib/cn'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { LanguageSelector } from '@/components/ui/LanguageSelector'
-import { navItems, REQUEST_DEMO_LABEL } from '@/data/navigation'
+import { navItems } from '@/data/navigation'
+import { useTranslations } from '@/lib/locale-context'
 import { MobileMenu } from './MobileMenu'
 
 export function Navbar() {
+  const t = useTranslations()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
 
@@ -65,14 +67,14 @@ export function Navbar() {
                   )
                 }
               >
-                {item.label}
+                {t.nav[item.id]}
               </NavLink>
             ))}
           </nav>
 
           <div className="hidden items-center gap-4 md:flex">
             <LanguageSelector />
-            <Button size="sm">{REQUEST_DEMO_LABEL}</Button>
+            <Button size="sm">{t.nav.requestDemo}</Button>
           </div>
 
           <button
@@ -80,7 +82,7 @@ export function Navbar() {
             onClick={() => setIsMobileOpen((value) => !value)}
             aria-expanded={isMobileOpen}
             aria-controls="mobile-menu"
-            aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
+            aria-label={isMobileOpen ? t.nav.closeMenu : t.nav.openMenu}
             className="focus-ring inline-flex items-center justify-center rounded-md p-2 text-ink md:hidden"
           >
             {isMobileOpen ? (

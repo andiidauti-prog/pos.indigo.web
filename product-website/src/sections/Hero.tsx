@@ -2,9 +2,10 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { ProductVisualPlaceholder } from '@/components/ui/ProductVisualPlaceholder'
-import { heroContent } from '@/data/hero'
+import { useTranslations } from '@/lib/locale-context'
 
 export function Hero() {
+  const t = useTranslations()
   const shouldReduceMotion = useReducedMotion()
 
   const contentVariants = {
@@ -31,23 +32,23 @@ export function Hero() {
             variants={contentVariants}
             className="flex flex-col gap-6 xl:gap-8"
           >
-            <p className="text-sm font-semibold tracking-wide text-brand-600">{heroContent.eyebrow}</p>
+            <p className="text-sm font-semibold tracking-wide text-brand-600">{t.hero.eyebrow}</p>
 
             {/* Sized to stay on two lines down to ~360px phones and once xl:grid-cols-2 narrows this column. */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl">
-              {heroContent.headlineLines.map((line) => (
+              {t.hero.headlineLines.map((line) => (
                 <span key={line} className="block">
                   {line}
                 </span>
               ))}
             </h1>
 
-            <p className="max-w-xl text-lg text-ink-muted">{heroContent.supportingText}</p>
+            <p className="max-w-xl text-lg text-ink-muted">{t.hero.supportingText}</p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <Button size="lg">{heroContent.primaryCta}</Button>
+              <Button size="lg">{t.nav.requestDemo}</Button>
               <Button size="lg" variant="outline">
-                {heroContent.secondaryCta}
+                {t.nav.contactSales}
               </Button>
             </div>
           </motion.div>

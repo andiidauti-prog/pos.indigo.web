@@ -1,9 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import { PaymentVisual } from '@/components/ui/PaymentVisual'
-import { paymentsContent, paymentMethods } from '@/data/payments'
+import { paymentMethods } from '@/data/payments'
+import { useTranslations } from '@/lib/locale-context'
 
 export function Payments() {
+  const t = useTranslations()
   const shouldReduceMotion = useReducedMotion()
 
   const contentVariants = {
@@ -29,21 +31,24 @@ export function Payments() {
             className="flex flex-col gap-10 lg:order-2"
           >
             <div>
-              <p className="text-sm font-semibold tracking-wide text-brand-600">{paymentsContent.eyebrow}</p>
-              <h2 className="mt-3 text-3xl sm:text-4xl">{paymentsContent.headline}</h2>
-              <p className="mt-4 text-lg text-ink-muted">{paymentsContent.supportingText}</p>
+              <p className="text-sm font-semibold tracking-wide text-brand-600">{t.payments.eyebrow}</p>
+              <h2 className="mt-3 text-3xl sm:text-4xl">{t.payments.headline}</h2>
+              <p className="mt-4 text-lg text-ink-muted">{t.payments.supportingText}</p>
             </div>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-              {paymentMethods.map((method) => (
-                <div key={method.title} className="border-t border-border pt-5">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-ink-muted">
-                    <method.icon className="h-4 w-4" aria-hidden="true" />
+              {paymentMethods.map((method) => {
+                const copy = t.payments.methods[method.id]
+                return (
+                  <div key={method.id} className="border-t border-border pt-5">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-ink-muted">
+                      <method.icon className="h-4 w-4" aria-hidden="true" />
+                    </div>
+                    <h3 className="mt-3 text-base font-semibold text-ink">{copy.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{copy.description}</p>
                   </div>
-                  <h3 className="mt-3 text-base font-semibold text-ink">{method.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{method.description}</p>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </motion.div>
 

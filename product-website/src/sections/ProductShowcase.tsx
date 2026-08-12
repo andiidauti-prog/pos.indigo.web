@@ -1,9 +1,10 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import { ProductShowcaseVisual } from '@/components/ui/ProductShowcaseVisual'
-import { productShowcaseContent, showcaseHighlights } from '@/data/productShowcase'
+import { useTranslations } from '@/lib/locale-context'
 
 export function ProductShowcase() {
+  const t = useTranslations()
   const shouldReduceMotion = useReducedMotion()
 
   const introVariants = {
@@ -32,9 +33,9 @@ export function ProductShowcase() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="mx-auto max-w-2xl text-center"
         >
-          <p className="text-sm font-semibold tracking-wide text-brand-600">{productShowcaseContent.eyebrow}</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">{productShowcaseContent.headline}</h2>
-          <p className="mt-4 text-lg text-ink-muted">{productShowcaseContent.supportingText}</p>
+          <p className="text-sm font-semibold tracking-wide text-brand-600">{t.productShowcase.eyebrow}</p>
+          <h2 className="mt-3 text-3xl sm:text-4xl">{t.productShowcase.headline}</h2>
+          <p className="mt-4 text-lg text-ink-muted">{t.productShowcase.supportingText}</p>
         </motion.div>
 
         <motion.div
@@ -49,7 +50,7 @@ export function ProductShowcase() {
         </motion.div>
 
         <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-3 lg:mt-16">
-          {showcaseHighlights.map((highlight, index) => (
+          {t.productShowcase.highlights.map((highlight, index) => (
             <motion.div
               key={highlight.title}
               initial="hidden"

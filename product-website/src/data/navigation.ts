@@ -1,29 +1,30 @@
 import type { FooterLinkGroup, NavItem } from '@/types/navigation'
 
-export const REQUEST_DEMO_LABEL = 'Побарајте демо'
-export const CONTACT_SALES_LABEL = 'Контактирајте нè'
-
+/**
+ * Structural navigation data only — labels live in the translation dictionary
+ * (`t.nav[item.id]`) so the same routes render in every locale.
+ */
 export const navItems: NavItem[] = [
-  { label: 'Home', to: '/' },
-  { label: 'Features', to: '/features' },
-  { label: 'Businesses', to: '/businesses' },
-  { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
+  { id: 'home', to: '/' },
+  { id: 'features', to: '/features' },
+  { id: 'businesses', to: '/businesses' },
+  { id: 'about', to: '/about' },
+  { id: 'contact', to: '/contact' },
 ]
 
 export const footerLinkGroups: FooterLinkGroup[] = [
   {
-    title: 'Product',
+    id: 'product',
     links: [
-      { label: 'Features', to: '/features' },
-      { label: 'Businesses', to: '/businesses' },
+      { id: 'features', to: '/features' },
+      { id: 'businesses', to: '/businesses' },
     ],
   },
   {
-    title: 'Company',
+    id: 'company',
     links: [
-      { label: 'About', to: '/about' },
-      { label: 'Contact', to: '/contact' },
+      { id: 'about', to: '/about' },
+      { id: 'contact', to: '/contact' },
     ],
   },
 ]

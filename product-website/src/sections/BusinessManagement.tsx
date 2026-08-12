@@ -1,9 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Container } from '@/components/ui/Container'
 import { ManagementVisual } from '@/components/ui/ManagementVisual'
-import { businessManagementContent, managementAreas } from '@/data/businessManagement'
+import { managementAreas } from '@/data/businessManagement'
+import { useTranslations } from '@/lib/locale-context'
 
 export function BusinessManagement() {
+  const t = useTranslations()
   const shouldReduceMotion = useReducedMotion()
 
   const contentVariants = {
@@ -30,24 +32,27 @@ export function BusinessManagement() {
           >
             <div>
               <p className="text-sm font-semibold tracking-wide text-brand-600">
-                {businessManagementContent.eyebrow}
+                {t.businessManagement.eyebrow}
               </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl">{businessManagementContent.headline}</h2>
-              <p className="mt-4 text-lg text-ink-muted">{businessManagementContent.supportingText}</p>
+              <h2 className="mt-3 text-3xl sm:text-4xl">{t.businessManagement.headline}</h2>
+              <p className="mt-4 text-lg text-ink-muted">{t.businessManagement.supportingText}</p>
             </div>
 
             <div className="flex flex-col gap-6">
-              {managementAreas.map((area) => (
-                <div key={area.title} className="flex gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-                    <area.icon className="h-5 w-5" aria-hidden="true" />
+              {managementAreas.map((area) => {
+                const copy = t.businessManagement.areas[area.id]
+                return (
+                  <div key={area.id} className="flex gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+                      <area.icon className="h-5 w-5" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-ink">{copy.title}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-ink-muted">{copy.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-base font-semibold text-ink">{area.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-ink-muted">{area.description}</p>
-                  </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </motion.div>
 

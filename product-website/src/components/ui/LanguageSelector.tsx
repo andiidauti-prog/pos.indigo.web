@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ChevronDown, Globe } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { locales } from '@/data/locales'
-import { useLocale } from '@/lib/locale-context'
+import { useLocale, useTranslations } from '@/lib/locale-context'
 
 export interface LanguageSelectorProps {
   variant?: 'dropdown' | 'inline'
@@ -15,6 +15,7 @@ export interface LanguageSelectorProps {
  */
 export function LanguageSelector({ variant = 'dropdown', className }: LanguageSelectorProps) {
   const { locale, setLocale } = useLocale()
+  const t = useTranslations()
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -40,7 +41,7 @@ export function LanguageSelector({ variant = 'dropdown', className }: LanguageSe
 
   if (variant === 'inline') {
     return (
-      <div className={cn('flex items-center gap-2', className)} role="group" aria-label="Select language">
+      <div className={cn('flex items-center gap-2', className)} role="group" aria-label={t.languageSelector.selectLanguage}>
         {locales.map((item) => (
           <button
             key={item.code}
@@ -70,7 +71,7 @@ export function LanguageSelector({ variant = 'dropdown', className }: LanguageSe
         onClick={() => setOpen((value) => !value)}
         aria-haspopup="menu"
         aria-expanded={open}
-        aria-label="Select language"
+        aria-label={t.languageSelector.selectLanguage}
         className="focus-ring inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium text-ink-muted transition-colors hover:text-ink"
       >
         <Globe className="h-4 w-4" aria-hidden="true" />
@@ -81,7 +82,7 @@ export function LanguageSelector({ variant = 'dropdown', className }: LanguageSe
       {open && (
         <div
           role="menu"
-          aria-label="Languages"
+          aria-label={t.footer.languagesLabel}
           className="absolute right-0 z-50 mt-2 w-40 rounded-md border border-border bg-surface py-1 shadow-card-hover"
         >
           {locales.map((item) => (

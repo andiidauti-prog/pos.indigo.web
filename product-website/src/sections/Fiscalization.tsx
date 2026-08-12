@@ -2,9 +2,10 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Check } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { FiscalizationVisual } from '@/components/ui/FiscalizationVisual'
-import { fiscalizationContent } from '@/data/fiscalization'
+import { useTranslations } from '@/lib/locale-context'
 
 export function Fiscalization() {
+  const t = useTranslations()
   const shouldReduceMotion = useReducedMotion()
 
   const contentVariants = {
@@ -30,16 +31,16 @@ export function Fiscalization() {
             className="flex flex-col gap-8"
           >
             <div>
-              <p className="text-sm font-semibold tracking-wide text-brand-600">{fiscalizationContent.eyebrow}</p>
-              <h2 className="mt-3 text-3xl sm:text-4xl">{fiscalizationContent.headline}</h2>
-              <p className="mt-4 text-lg text-ink-muted">{fiscalizationContent.supportingText}</p>
+              <p className="text-sm font-semibold tracking-wide text-brand-600">{t.fiscalization.eyebrow}</p>
+              <h2 className="mt-3 text-3xl sm:text-4xl">{t.fiscalization.headline}</h2>
+              <p className="mt-4 text-lg text-ink-muted">{t.fiscalization.supportingText}</p>
             </div>
 
             <div className="flex items-start gap-3 border-t border-border pt-6">
               <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
                 <Check className="h-3.5 w-3.5" aria-hidden="true" strokeWidth={3} />
               </div>
-              <p className="text-sm leading-relaxed text-ink-muted">{fiscalizationContent.supportingStatement}</p>
+              <p className="text-sm leading-relaxed text-ink-muted">{t.fiscalization.supportingStatement}</p>
             </div>
           </motion.div>
 

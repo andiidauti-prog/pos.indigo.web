@@ -1,13 +1,36 @@
-import { useState, type ReactNode } from 'react'
-import { DEFAULT_LOCALE } from '@/data/locales'
+import { useEffect, useState, type ReactNode } from 'react'
+import { DEFAULT_LOCALE, locales } from '@/data/locales'
 import type { Locale } from '@/types/i18n'
 import { LocaleContext } from '@/lib/locale-context'
 
+const STORAGE_KEY = 'onlinepos-locale'
+
+function isLocale(value: string | null): value is Locale {
+  return locales.some((item) => item.code === value)
+}
+
+function getInitialLocale(): Locale {
+  if (typeof window === 'undefined') return DEFAULT_LOCALE
+  const stored = window.localStorage.getItem(STORAGE_KEY)
+  return isLocale(stored) ? stored : DEFAULT_LOCALE
+}
+
 /**
  * Holds the selected UI locale for the navbar/footer language selectors.
- * No translation loading yet — that lands in a later milestone.
+ * Persists the choice to localStorage and keeps document.documentElement.lang
+ * in sync so the active language is reflected in the page's HTML.
  */
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>(DEFAULT_LOCALE)
+  const [locale, setLocaleState] = useState<Locale>(getInitialLocale)
+
+  useEffect(() => {
+    document.documentElement.lang = locales.find((item) => item.code === locale)?.htmlLang ?? locale
+  }, [locale])
+
+  function setLocale(next: Locale) {
+    setLocaleState(next)
+    window.localStorage.setItem(STORAGE_KEY, next)
+  }
+
   return <LocaleContext.Provider value={{ locale, setLocale }}>{children}</LocaleContext.Provider>
 }
