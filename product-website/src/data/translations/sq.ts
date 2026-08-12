@@ -169,4 +169,10 @@ export const sq: Translations = {
       submittedMessage: 'Formulari është gati të lidhet me sistemin e dërgimit.',
     },
   },
+  finalCta: {
+    eyebrow: 'KËRKONI DEMO',
+    headline: 'Njihuni me onlinePOS.',
+    supportingText: 'Mësoni më shumë rreth zgjidhjes dhe bisedoni me ekipin tonë.',
+    primaryCta: 'Kërkoni demo',
+  },
 }

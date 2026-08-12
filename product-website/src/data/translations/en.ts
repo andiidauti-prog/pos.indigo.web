@@ -167,4 +167,10 @@ export const en: Translations = {
       submittedMessage: 'The form is ready to be connected to the sending system.',
     },
   },
+  finalCta: {
+    eyebrow: 'REQUEST A DEMO',
+    headline: 'Meet onlinePOS.',
+    supportingText: 'Learn more about the solution and talk to our team.',
+    primaryCta: 'Request a demo',
+  },
 }

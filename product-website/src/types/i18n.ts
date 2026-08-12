@@ -110,6 +110,10 @@ export interface ContactTranslations extends SectionIntro {
   form: ContactFormTranslations
 }
 
+export interface FinalCtaTranslations extends SectionIntro {
+  primaryCta: string
+}
+
 export interface Translations {
   nav: NavTranslations
   footer: FooterTranslations
@@ -122,4 +126,5 @@ export interface Translations {
   fiscalization: FiscalizationTranslations
   payments: PaymentsTranslations
   contact: ContactTranslations
+  finalCta: FinalCtaTranslations
 }

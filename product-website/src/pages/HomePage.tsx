@@ -5,6 +5,7 @@ import { ProductShowcase } from '@/sections/ProductShowcase'
 import { BusinessManagement } from '@/sections/BusinessManagement'
 import { Fiscalization } from '@/sections/Fiscalization'
 import { Payments } from '@/sections/Payments'
+import { FinalCTA } from '@/sections/FinalCTA'
 
 export function HomePage() {
   return (
@@ -16,6 +17,7 @@ export function HomePage() {
       <BusinessManagement />
       <Fiscalization />
       <Payments />
+      <FinalCTA />
     </>
   )
 }

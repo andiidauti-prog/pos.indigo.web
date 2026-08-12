@@ -169,4 +169,10 @@ export const mk: Translations = {
       submittedMessage: 'Формата е подготвена за поврзување со системот за испраќање.',
     },
   },
+  finalCta: {
+    eyebrow: 'ПОБАРАЈТЕ ДЕМО',
+    headline: 'Запознајте го onlinePOS.',
+    supportingText: 'Дознајте повеќе за решението и разговарајте со нашиот тим.',
+    primaryCta: 'Побарајте демо',
+  },
 }
