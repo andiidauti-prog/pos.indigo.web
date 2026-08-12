@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { ProductVisualPlaceholder } from '@/components/ui/ProductVisualPlaceholder'
+import { CONTACT_ROUTE } from '@/data/navigation'
 import { useTranslations } from '@/lib/locale-context'
 
 export function Hero() {
@@ -46,8 +47,10 @@ export function Hero() {
             <p className="max-w-xl text-lg text-ink-muted">{t.hero.supportingText}</p>
 
             <div className="flex flex-wrap items-center gap-4">
-              <Button size="lg">{t.nav.requestDemo}</Button>
-              <Button size="lg" variant="outline">
+              <Button to={CONTACT_ROUTE} size="lg">
+                {t.nav.requestDemo}
+              </Button>
+              <Button to={CONTACT_ROUTE} size="lg" variant="outline">
                 {t.nav.contactSales}
               </Button>
             </div>

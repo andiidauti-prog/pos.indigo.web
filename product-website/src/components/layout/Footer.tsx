@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { LanguageSelector } from '@/components/ui/LanguageSelector'
-import { footerLinkGroups } from '@/data/navigation'
+import { CONTACT_ROUTE, footerLinkGroups } from '@/data/navigation'
 import { useTranslations } from '@/lib/locale-context'
 
 const footerGroupLabelKey = {
@@ -22,7 +22,7 @@ export function Footer() {
             <Link to="/" className="focus-ring w-fit rounded-sm text-lg font-semibold tracking-tight text-ink">
               onlinePOS
             </Link>
-            <Button variant="outline" size="sm" className="w-fit">
+            <Button to={CONTACT_ROUTE} variant="outline" size="sm" className="w-fit">
               {t.nav.requestDemo}
             </Button>
           </div>

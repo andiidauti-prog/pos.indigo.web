@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { cn } from '@/lib/cn'
 import { Button } from '@/components/ui/Button'
 import { LanguageSelector } from '@/components/ui/LanguageSelector'
-import { navItems } from '@/data/navigation'
+import { CONTACT_ROUTE, navItems } from '@/data/navigation'
 import { useTranslations } from '@/lib/locale-context'
 
 export interface MobileMenuProps {
@@ -47,7 +47,7 @@ export function MobileMenu({ isOpen, onNavigate }: MobileMenuProps) {
 
         <div className="flex flex-col gap-4 border-t border-border px-6 py-5">
           <LanguageSelector variant="inline" />
-          <Button className="w-full" onClick={onNavigate}>
+          <Button to={CONTACT_ROUTE} className="w-full" onClick={onNavigate}>
             {t.nav.requestDemo}
           </Button>
         </div>

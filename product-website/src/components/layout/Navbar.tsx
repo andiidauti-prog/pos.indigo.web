@@ -5,7 +5,7 @@ import { cn } from '@/lib/cn'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { LanguageSelector } from '@/components/ui/LanguageSelector'
-import { navItems } from '@/data/navigation'
+import { CONTACT_ROUTE, navItems } from '@/data/navigation'
 import { useTranslations } from '@/lib/locale-context'
 import { MobileMenu } from './MobileMenu'
 
@@ -74,7 +74,9 @@ export function Navbar() {
 
           <div className="hidden items-center gap-4 md:flex">
             <LanguageSelector />
-            <Button size="sm">{t.nav.requestDemo}</Button>
+            <Button to={CONTACT_ROUTE} size="sm">
+              {t.nav.requestDemo}
+            </Button>
           </div>
 
           <button

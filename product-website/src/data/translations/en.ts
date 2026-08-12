@@ -143,4 +143,28 @@ export const en: Translations = {
       },
     },
   },
+  contact: {
+    eyebrow: 'CONTACT US',
+    headline: 'Find out how onlinePOS can help your business.',
+    supportingText: 'Request a demo or contact our sales team for more information.',
+    form: {
+      nameLabel: 'Name',
+      companyLabel: 'Company',
+      emailLabel: 'Email',
+      phoneLabel: 'Phone',
+      businessTypeLabel: 'Business type',
+      businessTypePlaceholder: 'Select business type',
+      businessTypeOptions: {
+        restaurant: 'Restaurant',
+        store: 'Store',
+        warehouse: 'Warehouse',
+        other: 'Other',
+      },
+      messageLabel: 'Message',
+      requiredFieldNote: '* Required field',
+      submitLabel: 'Send',
+      submittingLabel: 'Sending...',
+      submittedMessage: 'The form is ready to be connected to the sending system.',
+    },
+  },
 }

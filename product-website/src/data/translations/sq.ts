@@ -145,4 +145,28 @@ export const sq: Translations = {
       },
     },
   },
+  contact: {
+    eyebrow: 'NA KONTAKTONI',
+    headline: 'Zbuloni si onlinePOS mund të ndihmojë biznesin tuaj.',
+    supportingText: 'Kërkoni një demo ose kontaktoni ekipin tonë të shitjeve për më shumë informacione.',
+    form: {
+      nameLabel: 'Emri',
+      companyLabel: 'Kompania',
+      emailLabel: 'Email',
+      phoneLabel: 'Telefoni',
+      businessTypeLabel: 'Lloji i biznesit',
+      businessTypePlaceholder: 'Zgjidhni llojin e biznesit',
+      businessTypeOptions: {
+        restaurant: 'Restorant',
+        store: 'Dyqan',
+        warehouse: 'Depo',
+        other: 'Tjetër',
+      },
+      messageLabel: 'Mesazhi',
+      requiredFieldNote: '* Fushë e detyrueshme',
+      submitLabel: 'Dërgo',
+      submittingLabel: 'Duke dërguar...',
+      submittedMessage: 'Formulari është gati të lidhet me sistemin e dërgimit.',
+    },
+  },
 }

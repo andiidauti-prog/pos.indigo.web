@@ -145,4 +145,28 @@ export const mk: Translations = {
       },
     },
   },
+  contact: {
+    eyebrow: 'КОНТАКТИРАЈТЕ НÈ',
+    headline: 'Дознајте како onlinePOS може да му помогне на вашиот бизнис.',
+    supportingText: 'Побарајте демо или контактирајте го нашиот продажен тим за повеќе информации.',
+    form: {
+      nameLabel: 'Име',
+      companyLabel: 'Компанија',
+      emailLabel: 'Email',
+      phoneLabel: 'Телефон',
+      businessTypeLabel: 'Тип на бизнис',
+      businessTypePlaceholder: 'Изберете тип на бизнис',
+      businessTypeOptions: {
+        restaurant: 'Ресторан',
+        store: 'Продавница',
+        warehouse: 'Магацин',
+        other: 'Друго',
+      },
+      messageLabel: 'Порака',
+      requiredFieldNote: '* Задолжително поле',
+      submitLabel: 'Испрати',
+      submittingLabel: 'Испраќање...',
+      submittedMessage: 'Формата е подготвена за поврзување со системот за испраќање.',
+    },
+  },
 }

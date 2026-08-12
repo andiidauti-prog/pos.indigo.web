@@ -36,6 +36,7 @@ export type CapabilityId = 'sales' | 'inventory' | 'fiscalization' | 'reports' |
 export type IndustryId = 'restaurants' | 'stores' | 'warehouses' | 'other'
 export type ManagementAreaId = 'reports' | 'remoteManagement' | 'inventorySales'
 export type PaymentMethodId = 'cash' | 'card' | 'other'
+export type BusinessTypeId = 'restaurant' | 'store' | 'warehouse' | 'other'
 
 export interface NavTranslations extends Record<NavItemId, string> {
   requestDemo: string
@@ -86,6 +87,29 @@ export interface PaymentsTranslations extends SectionIntro {
   methods: Record<PaymentMethodId, TextItem>
 }
 
+export interface ContactFormTranslations {
+  nameLabel: string
+  companyLabel: string
+  emailLabel: string
+  phoneLabel: string
+  businessTypeLabel: string
+  businessTypePlaceholder: string
+  businessTypeOptions: Record<BusinessTypeId, string>
+  messageLabel: string
+  requiredFieldNote: string
+  submitLabel: string
+  submittingLabel: string
+  /**
+   * Shown after submit instead of a fake success message — there is no
+   * backend/API yet, so this must never claim the message was sent.
+   */
+  submittedMessage: string
+}
+
+export interface ContactTranslations extends SectionIntro {
+  form: ContactFormTranslations
+}
+
 export interface Translations {
   nav: NavTranslations
   footer: FooterTranslations
@@ -97,4 +121,5 @@ export interface Translations {
   businessManagement: BusinessManagementTranslations
   fiscalization: FiscalizationTranslations
   payments: PaymentsTranslations
+  contact: ContactTranslations
 }
