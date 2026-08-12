@@ -98,6 +98,7 @@ export const sq: Translations = {
       { title: 'Inventari', description: 'Ndiqni inventarin e biznesit tuaj nga një vend.' },
       { title: 'Menaxhimi', description: 'Kini pasqyrë dhe kontroll mbi funksionimin e biznesit tuaj.' },
     ],
+    visualLabel: 'Pamje vizuale e produktit (së shpejti)',
   },
   businessManagement: {
     eyebrow: 'MENAXHONI BIZNESIN',
@@ -118,6 +119,7 @@ export const sq: Translations = {
         description: 'Shitja dhe inventari menaxhohen së bashku, nga një vend.',
       },
     },
+    visualLabel: 'Pamje vizuale e menaxhimit të biznesit (së shpejti)',
   },
   fiscalization: {
     eyebrow: 'FISKALIZIMI',
@@ -125,6 +127,7 @@ export const sq: Translations = {
     supportingText:
       'onlinePOS e përfshin fiskalizimin si pjesë të procesit të shitjes, me qëllim që puna juaj të jetë më e thjeshtë dhe më e organizuar.',
     supportingStatement: 'Fiskalizimi është i integruar direkt në rrjedhën e shitjes në onlinePOS.',
+    visualLabel: 'Pamje vizuale e fiskalizimit (së shpejti)',
   },
   payments: {
     eyebrow: 'PAGESAT',
@@ -144,6 +147,7 @@ export const sq: Translations = {
         description: 'Mbështetje edhe për mënyra të tjera pagese, sipas nevojave të biznesit.',
       },
     },
+    visualLabel: 'Pamje vizuale e pagesave (së shpejti)',
   },
   contact: {
     eyebrow: 'NA KONTAKTONI',

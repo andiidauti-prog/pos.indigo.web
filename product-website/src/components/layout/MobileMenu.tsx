@@ -19,7 +19,7 @@ export function MobileMenu({ isOpen, onNavigate }: MobileMenuProps) {
       inert={!isOpen}
       aria-hidden={!isOpen}
       className={cn(
-        'grid overflow-hidden border-t transition-[grid-template-rows] duration-300 ease-in-out md:hidden',
+        'grid overflow-hidden border-t transition-[grid-template-rows] duration-300 ease-in-out lg:hidden',
         isOpen ? 'grid-rows-[1fr] border-border' : 'grid-rows-[0fr] border-transparent',
       )}
     >

@@ -53,7 +53,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border pt-6 text-sm text-ink-subtle">
+        <div className="border-t border-border pt-6 text-sm text-ink-muted">
           {t.footer.copyright.replace('{year}', String(year))}
         </div>
       </Container>

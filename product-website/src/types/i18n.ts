@@ -73,18 +73,26 @@ export interface IndustriesTranslations extends SectionIntro {
 
 export interface ProductShowcaseTranslations extends SectionIntro {
   highlights: TextItem[]
+  /** Accessible name for the section's decorative product-preview illustration. */
+  visualLabel: string
 }
 
 export interface BusinessManagementTranslations extends SectionIntro {
   areas: Record<ManagementAreaId, TextItem>
+  /** Accessible name for the section's decorative product-preview illustration. */
+  visualLabel: string
 }
 
 export interface FiscalizationTranslations extends SectionIntro {
   supportingStatement: string
+  /** Accessible name for the section's decorative product-preview illustration. */
+  visualLabel: string
 }
 
 export interface PaymentsTranslations extends SectionIntro {
   methods: Record<PaymentMethodId, TextItem>
+  /** Accessible name for the section's decorative product-preview illustration. */
+  visualLabel: string
 }
 
 export interface ContactFormTranslations {

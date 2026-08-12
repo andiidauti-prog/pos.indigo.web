@@ -52,7 +52,7 @@ export function Navbar() {
             onlinePOS
           </Link>
 
-          <nav className="hidden items-stretch gap-1 md:flex" aria-label="Primary">
+          <nav className="hidden items-stretch gap-1 lg:flex" aria-label="Primary">
             {navItems.map((item) => (
               <NavLink
                 key={item.to}
@@ -72,7 +72,7 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-4 md:flex">
+          <div className="hidden items-center gap-4 lg:flex">
             <LanguageSelector />
             <Button to={CONTACT_ROUTE} size="sm">
               {t.nav.requestDemo}
@@ -85,7 +85,7 @@ export function Navbar() {
             aria-expanded={isMobileOpen}
             aria-controls="mobile-menu"
             aria-label={isMobileOpen ? t.nav.closeMenu : t.nav.openMenu}
-            className="focus-ring inline-flex items-center justify-center rounded-md p-2 text-ink md:hidden"
+            className="focus-ring inline-flex items-center justify-center rounded-md p-2 text-ink lg:hidden"
           >
             {isMobileOpen ? (
               <X className="h-6 w-6" aria-hidden="true" />

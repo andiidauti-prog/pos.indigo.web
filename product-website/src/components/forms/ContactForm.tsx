@@ -69,7 +69,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-      <p className="text-xs text-ink-subtle">{t.contact.form.requiredFieldNote}</p>
+      <p className="text-xs text-ink-muted">{t.contact.form.requiredFieldNote}</p>
 
       <FormField id={`${formId}-name`} label={t.contact.form.nameLabel} required>
         <input

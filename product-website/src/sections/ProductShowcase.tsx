@@ -46,7 +46,7 @@ export function ProductShowcase() {
           transition={{ duration: 0.6, ease: 'easeOut', delay: shouldReduceMotion ? 0 : 0.1 }}
           className="mx-auto mt-12 max-w-5xl lg:mt-16"
         >
-          <ProductShowcaseVisual />
+          <ProductShowcaseVisual ariaLabel={t.productShowcase.visualLabel} />
         </motion.div>
 
         <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-3 lg:mt-16">

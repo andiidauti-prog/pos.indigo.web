@@ -1,6 +1,8 @@
 import { cn } from '@/lib/cn'
 
 export interface PaymentVisualProps {
+  /** Localized accessible name — this illustration stands in for a real product screenshot. */
+  ariaLabel: string
   className?: string
 }
 
@@ -11,11 +13,11 @@ export interface PaymentVisualProps {
  * card numbers, amounts, transaction IDs, or provider/bank marks. Swap for
  * a real, approved image once one exists.
  */
-export function PaymentVisual({ className }: PaymentVisualProps) {
+export function PaymentVisual({ ariaLabel, className }: PaymentVisualProps) {
   return (
     <div
       role="img"
-      aria-label="onlinePOS — визуелен приказ на плаќањата (наскоро)"
+      aria-label={ariaLabel}
       className={cn('overflow-hidden rounded-2xl border border-border bg-surface shadow-card-hover', className)}
     >
       {/* Window chrome */}

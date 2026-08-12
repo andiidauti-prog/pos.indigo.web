@@ -30,7 +30,7 @@ export function BusinessManagement() {
             transition={{ duration: 0.5, ease: 'easeOut' }}
             className="flex flex-col gap-10 lg:order-2"
           >
-            <div>
+            <div className="max-w-2xl">
               <p className="text-sm font-semibold tracking-wide text-brand-600">
                 {t.businessManagement.eyebrow}
               </p>
@@ -64,7 +64,7 @@ export function BusinessManagement() {
             transition={{ duration: 0.6, ease: 'easeOut', delay: shouldReduceMotion ? 0 : 0.1 }}
             className="lg:order-1"
           >
-            <ManagementVisual />
+            <ManagementVisual ariaLabel={t.businessManagement.visualLabel} />
           </motion.div>
         </div>
       </Container>

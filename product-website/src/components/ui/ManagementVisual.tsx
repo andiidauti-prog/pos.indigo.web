@@ -1,6 +1,8 @@
 import { cn } from '@/lib/cn'
 
 export interface ManagementVisualProps {
+  /** Localized accessible name — this illustration stands in for a real product screenshot. */
+  ariaLabel: string
   className?: string
 }
 
@@ -12,11 +14,11 @@ const chartBarHeights = ['h-10', 'h-16', 'h-8', 'h-20', 'h-12', 'h-24', 'h-14']
  * labels, or legends — structure only, nothing that could be mistaken for
  * real data. Swap for a real <img> once an approved screenshot exists.
  */
-export function ManagementVisual({ className }: ManagementVisualProps) {
+export function ManagementVisual({ ariaLabel, className }: ManagementVisualProps) {
   return (
     <div
       role="img"
-      aria-label="onlinePOS — визуелен приказ на управувањето со бизнисот (наскоро)"
+      aria-label={ariaLabel}
       className={cn('overflow-hidden rounded-2xl border border-border bg-surface shadow-card-hover', className)}
     >
       {/* Window chrome */}

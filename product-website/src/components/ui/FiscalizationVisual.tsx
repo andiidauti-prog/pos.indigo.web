@@ -2,6 +2,8 @@ import { Check } from 'lucide-react'
 import { cn } from '@/lib/cn'
 
 export interface FiscalizationVisualProps {
+  /** Localized accessible name — this illustration stands in for a real product screenshot. */
+  ariaLabel: string
   className?: string
 }
 
@@ -34,11 +36,11 @@ const receiptLineWidths = ['w-full', 'w-5/6', 'w-full', 'w-2/3', 'w-4/5']
  * fiscal device UI, or government marks — structure only. Swap for a real,
  * approved screenshot once the fiscalization implementation is finalized.
  */
-export function FiscalizationVisual({ className }: FiscalizationVisualProps) {
+export function FiscalizationVisual({ ariaLabel, className }: FiscalizationVisualProps) {
   return (
     <div
       role="img"
-      aria-label="onlinePOS — визуелен приказ на фискализацијата (наскоро)"
+      aria-label={ariaLabel}
       className={cn('overflow-hidden rounded-2xl border border-border bg-surface shadow-card-hover', className)}
     >
       {/* Window chrome */}

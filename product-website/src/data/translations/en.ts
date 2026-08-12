@@ -96,6 +96,7 @@ export const en: Translations = {
       { title: 'Inventory', description: "Track your business's inventory from one place." },
       { title: 'Management', description: "Have insight and control over your business's operations." },
     ],
+    visualLabel: 'Visual preview of the product (coming soon)',
   },
   businessManagement: {
     eyebrow: 'MANAGE YOUR BUSINESS',
@@ -116,6 +117,7 @@ export const en: Translations = {
         description: 'Sales and inventory are managed together, from one place.',
       },
     },
+    visualLabel: 'Visual preview of business management (coming soon)',
   },
   fiscalization: {
     eyebrow: 'FISCALIZATION',
@@ -123,6 +125,7 @@ export const en: Translations = {
     supportingText:
       'onlinePOS includes fiscalization as part of the sales process, to make your operations simpler and more organized.',
     supportingStatement: 'Fiscalization is integrated directly into the sales flow in onlinePOS.',
+    visualLabel: 'Visual preview of fiscalization (coming soon)',
   },
   payments: {
     eyebrow: 'PAYMENTS',
@@ -142,6 +145,7 @@ export const en: Translations = {
         description: 'Support for other payment methods as well, depending on business needs.',
       },
     },
+    visualLabel: 'Visual preview of payments (coming soon)',
   },
   contact: {
     eyebrow: 'CONTACT US',

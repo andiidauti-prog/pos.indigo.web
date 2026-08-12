@@ -30,7 +30,7 @@ export function Payments() {
             transition={{ duration: 0.5, ease: 'easeOut' }}
             className="flex flex-col gap-10 lg:order-2"
           >
-            <div>
+            <div className="max-w-2xl">
               <p className="text-sm font-semibold tracking-wide text-brand-600">{t.payments.eyebrow}</p>
               <h2 className="mt-3 text-3xl sm:text-4xl">{t.payments.headline}</h2>
               <p className="mt-4 text-lg text-ink-muted">{t.payments.supportingText}</p>
@@ -60,7 +60,7 @@ export function Payments() {
             transition={{ duration: 0.6, ease: 'easeOut', delay: shouldReduceMotion ? 0 : 0.1 }}
             className="lg:order-1"
           >
-            <PaymentVisual />
+            <PaymentVisual ariaLabel={t.payments.visualLabel} />
           </motion.div>
         </div>
       </Container>

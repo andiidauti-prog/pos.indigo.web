@@ -30,7 +30,7 @@ export function Fiscalization() {
             transition={{ duration: 0.5, ease: 'easeOut' }}
             className="flex flex-col gap-8"
           >
-            <div>
+            <div className="max-w-2xl">
               <p className="text-sm font-semibold tracking-wide text-brand-600">{t.fiscalization.eyebrow}</p>
               <h2 className="mt-3 text-3xl sm:text-4xl">{t.fiscalization.headline}</h2>
               <p className="mt-4 text-lg text-ink-muted">{t.fiscalization.supportingText}</p>
@@ -51,7 +51,7 @@ export function Fiscalization() {
             variants={visualVariants}
             transition={{ duration: 0.6, ease: 'easeOut', delay: shouldReduceMotion ? 0 : 0.1 }}
           >
-            <FiscalizationVisual />
+            <FiscalizationVisual ariaLabel={t.fiscalization.visualLabel} />
           </motion.div>
         </div>
       </Container>

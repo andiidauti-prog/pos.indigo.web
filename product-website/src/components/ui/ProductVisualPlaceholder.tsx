@@ -14,8 +14,7 @@ export interface ProductVisualPlaceholderProps {
 export function ProductVisualPlaceholder({ className }: ProductVisualPlaceholderProps) {
   return (
     <div
-      role="img"
-      aria-label="onlinePOS product preview placeholder"
+      aria-hidden="true"
       className={cn(
         'overflow-hidden rounded-xl border border-border bg-surface shadow-card-hover',
         className,

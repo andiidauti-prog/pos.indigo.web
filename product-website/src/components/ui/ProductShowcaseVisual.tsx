@@ -1,6 +1,8 @@
 import { cn } from '@/lib/cn'
 
 export interface ProductShowcaseVisualProps {
+  /** Localized accessible name — this illustration stands in for a real product screenshot. */
+  ariaLabel: string
   className?: string
 }
 
@@ -10,11 +12,11 @@ export interface ProductShowcaseVisualProps {
  * copy. Swap the "application body" block below for a real <img> (or a
  * responsive image component) once an approved screenshot exists.
  */
-export function ProductShowcaseVisual({ className }: ProductShowcaseVisualProps) {
+export function ProductShowcaseVisual({ ariaLabel, className }: ProductShowcaseVisualProps) {
   return (
     <div
       role="img"
-      aria-label="onlinePOS — визуелен приказ на производот (наскоро)"
+      aria-label={ariaLabel}
       className={cn(
         'overflow-hidden rounded-2xl border border-border bg-surface shadow-card-hover',
         className,

@@ -23,8 +23,7 @@ export function IndustryCard({ icon: Icon, title, description, className }: Indu
       )}
     >
       <div
-        role="img"
-        aria-label={`${title} — визуелен приказ (наскоро)`}
+        aria-hidden="true"
         className="flex aspect-[16/10] items-center justify-center border-b border-border bg-surface-muted"
       >
         <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-surface text-brand-600 transition-transform duration-200 group-hover:scale-105">
