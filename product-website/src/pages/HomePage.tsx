@@ -3,6 +3,8 @@ import { CoreCapabilities } from '@/sections/CoreCapabilities'
 import { Industries } from '@/sections/Industries'
 import { ProductShowcase } from '@/sections/ProductShowcase'
 import { BusinessManagement } from '@/sections/BusinessManagement'
+import { Fiscalization } from '@/sections/Fiscalization'
+import { Payments } from '@/sections/Payments'
 
 export function HomePage() {
   return (
@@ -12,6 +14,8 @@ export function HomePage() {
       <Industries />
       <ProductShowcase />
       <BusinessManagement />
+      <Fiscalization />
+      <Payments />
     </>
   )
 }
