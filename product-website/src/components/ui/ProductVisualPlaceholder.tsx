@@ -16,7 +16,7 @@ export function ProductVisualPlaceholder({ className }: ProductVisualPlaceholder
     <div
       aria-hidden="true"
       className={cn(
-        'overflow-hidden rounded-xl border border-border bg-surface shadow-card-hover',
+        'overflow-hidden rounded-2xl border border-border bg-surface shadow-card-hover',
         className,
       )}
     >

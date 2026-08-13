@@ -141,7 +141,7 @@ export function ContactForm() {
         size="lg"
         disabled={isSubmitting}
         aria-busy={isSubmitting}
-        className="mt-2 w-full sm:w-auto"
+        className="mt-2 w-full"
       >
         {isSubmitting ? t.contact.form.submittingLabel : t.contact.form.submitLabel}
       </Button>

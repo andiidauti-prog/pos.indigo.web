@@ -4,5 +4,3 @@ import { sq } from './sq'
 import { en } from './en'
 
 export const translations: Record<Locale, Translations> = { mk, sq, en }
-
-export { mk, sq, en }
