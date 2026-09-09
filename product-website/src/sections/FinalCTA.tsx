@@ -22,16 +22,28 @@ export function FinalCTA() {
           viewport={{ once: true, margin: '-80px' }}
           variants={cardVariants}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="rounded-2xl border border-brand-100 bg-brand-50 px-6 py-16 text-center shadow-card-hover sm:px-12 sm:py-20 lg:py-24"
+          className="relative overflow-hidden rounded-3xl border border-brand-200/60 bg-gradient-to-br from-brand-50 via-surface to-brand-100/30 px-6 py-16 text-center shadow-xl sm:px-12 sm:py-20 lg:py-24"
         >
-          <p className="text-sm font-semibold tracking-wide text-brand-600">{t.finalCta.eyebrow}</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl">{t.finalCta.headline}</h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-ink-muted">{t.finalCta.supportingText}</p>
+          {/* Subtle warm glow background accent */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-400/10 blur-3xl"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl"
+          />
 
-          <div className="mt-8 flex justify-center">
-            <Button to={CONTACT_ROUTE} size="lg">
-              {t.finalCta.primaryCta}
-            </Button>
+          <div className="relative z-10">
+            <p className="text-sm font-semibold tracking-wide text-brand-600">{t.finalCta.eyebrow}</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl">{t.finalCta.headline}</h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-ink-muted">{t.finalCta.supportingText}</p>
+
+            <div className="mt-8 flex justify-center">
+              <Button to={CONTACT_ROUTE} size="lg" className="shadow-lg shadow-brand-600/20">
+                {t.finalCta.primaryCta}
+              </Button>
+            </div>
           </div>
         </motion.div>
       </Container>

@@ -34,7 +34,7 @@ export function Industries() {
                 variants={cardVariants}
                 transition={{ duration: 0.45, ease: 'easeOut', delay: shouldReduceMotion ? 0 : index * 0.06 }}
               >
-                <IndustryCard icon={industry.icon} title={copy.title} description={copy.description} className="h-full" />
+                <IndustryCard id={industry.id} icon={industry.icon} title={copy.title} description={copy.description} className="h-full" />
               </motion.div>
             )
           })}
