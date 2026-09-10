@@ -1,7 +1,8 @@
 import type { LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import pic1 from '@/assets/pic-1.png'
-import pic2 from '@/assets/pic-2.png'
+import pic2 from '@/assets/pic-2.png';
+import wearhouseImg from '@/assets/wearhouse-pos.png';
 
 export interface IndustryCardProps {
   id?: string
@@ -50,13 +51,12 @@ export function IndustryCard({ id, icon: Icon, title, description, className }: 
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent" />
           </>
         ) : isWarehouse ? (
-          <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-stone-900 via-stone-850 to-stone-950 p-6">
-            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#b4792a_1px,transparent_1px)] [background-size:16px_16px]" />
-            <div className="relative flex items-center gap-3 rounded-lg border border-amber-500/20 bg-stone-900/90 px-4 py-2 text-xs text-amber-200/90 backdrop-blur shadow-lg">
-              <span className="h-2 w-2 rounded-full bg-amber-400" />
-              <span>Multi-Location & Stock Sync</span>
-            </div>
-          </div>
+          <img
+            src={wearhouseImg}
+            alt="Warehouse POS system"
+            className="h-full w-full object-cover object-center"
+            loading="lazy"
+          />
         ) : (
           <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-stone-900 via-amber-950/30 to-stone-950 p-6">
             <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#d3872c_1px,transparent_1px)] [background-size:12px_12px]" />

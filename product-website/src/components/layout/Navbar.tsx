@@ -8,6 +8,7 @@ import { LanguageSelector } from '@/components/ui/LanguageSelector'
 import { CONTACT_ROUTE, navItems } from '@/data/navigation'
 import { useTranslations } from '@/lib/locale-context'
 import { MobileMenu } from './MobileMenu'
+import logo from '@/assets/onine-pos-logo.jpg';
 
 export function Navbar() {
   const t = useTranslations()
@@ -48,8 +49,8 @@ export function Navbar() {
     >
       <Container>
         <div className="flex h-16 items-center justify-between gap-6">
-          <Link to="/" className="focus-ring rounded-sm text-lg font-semibold tracking-tight text-ink">
-            onlinePOS
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="onlinePOS logo" className="h-8 w-auto object-contain" />
           </Link>
 
           <nav className="hidden items-stretch gap-1 lg:flex" aria-label="Primary">

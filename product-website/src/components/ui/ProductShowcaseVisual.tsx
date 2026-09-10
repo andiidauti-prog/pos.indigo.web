@@ -3,7 +3,7 @@ import { cn } from '@/lib/cn'
 import pic1 from '@/assets/pic-1.png'
 import pic2 from '@/assets/pic-2.png'
 import imgMenu from '@/assets/image.png'
-import imgStats from '@/assets/image (1).png'
+import imgStats from '@/assets/onine-pos-logo.jpg';
 
 export interface ProductShowcaseVisualProps {
   /** Localized accessible name */

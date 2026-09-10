@@ -4,6 +4,7 @@ import { Container } from '@/components/ui/Container'
 import { LanguageSelector } from '@/components/ui/LanguageSelector'
 import { CONTACT_ROUTE, footerLinkGroups } from '@/data/navigation'
 import { useTranslations } from '@/lib/locale-context'
+import logo from '@/assets/onine-pos-logo.jpg'
 
 const footerGroupLabelKey = {
   product: 'productGroup',
@@ -19,8 +20,8 @@ export function Footer() {
       <Container className="flex flex-col gap-12 py-16">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
           <div className="flex flex-col gap-4">
-            <Link to="/" className="focus-ring w-fit rounded-sm text-lg font-semibold tracking-tight text-ink">
-              onlinePOS
+            <Link to="/" className="flex items-center">
+              <img src={logo} alt="onlinePOS logo" className="h-8 w-auto object-contain" />
             </Link>
             <Button to={CONTACT_ROUTE} variant="outline" size="sm" className="w-fit">
               {t.nav.requestDemo}
