@@ -12,25 +12,14 @@ export const CONTACT_ROUTE = '/contact'
  */
 export const navItems: NavItem[] = [
   { id: 'home', to: '/' },
-  { id: 'features', to: '/features' },
-  { id: 'businesses', to: '/businesses' },
-  { id: 'about', to: '/about' },
   { id: 'contact', to: CONTACT_ROUTE },
-]
+];
 
 export const footerLinkGroups: FooterLinkGroup[] = [
   {
-    id: 'product',
-    links: [
-      { id: 'features', to: '/features' },
-      { id: 'businesses', to: '/businesses' },
-    ],
-  },
-  {
     id: 'company',
     links: [
-      { id: 'about', to: '/about' },
       { id: 'contact', to: CONTACT_ROUTE },
     ],
   },
-]
+];

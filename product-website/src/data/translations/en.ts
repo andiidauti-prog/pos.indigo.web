@@ -148,9 +148,9 @@ export const en: Translations = {
     visualLabel: 'Visual preview of payments (coming soon)',
   },
   contact: {
-    eyebrow: 'CONTACT US',
-    headline: 'Find out how onlinePOS can help your business.',
-    supportingText: 'Request a demo or contact our sales team for more information.',
+    eyebrow: 'REQUEST A DEMO',
+    headline: 'Find out how onlinePOS can power your business.',
+    supportingText: 'Complete this quick step-by-step request and our team will get in touch.',
     form: {
       nameLabel: 'Name',
       companyLabel: 'Company',
@@ -169,6 +169,75 @@ export const en: Translations = {
       submitLabel: 'Send',
       submittingLabel: 'Sending...',
       submittedMessage: 'The form is ready to be connected to the sending system.',
+    },
+  },
+  demoWizard: {
+    stepIndicator: 'Step {current} of {total}',
+    steps: {
+      step1: {
+        title: 'Contact Information',
+        description: 'Provide your details so our team can reach out.',
+        fullName: 'Full name',
+        businessName: 'Business name',
+        email: 'Email address',
+        phone: 'Phone number (optional)',
+      },
+      step2: {
+        title: 'Tell us about your business',
+        description: 'Select the primary industry that describes your operation.',
+        options: {
+          restaurant: 'Restaurant / Cafe',
+          shop: 'Shop / Retail',
+          warehouse: 'Warehouse / Wholesale',
+          other: 'Other Business',
+        },
+      },
+      step3: {
+        title: 'What are you interested in?',
+        description: 'Select all features relevant to your business needs.',
+        options: {
+          pos: 'Point of Sale (POS)',
+          stock: 'Stock Management',
+          fiscalization: 'Fiscalization',
+          reports: 'Reports & Statistics',
+          multiLocation: 'Multiple Locations',
+          other: 'Other Capabilities',
+        },
+      },
+      step4: {
+        title: 'Additional information',
+        description: "Tell us a little more about what you're looking for.",
+        placeholder: 'Describe your current setup, hardware needs, or timeline...',
+      },
+      step5: {
+        title: 'Preferred contact method',
+        description: 'How would you prefer our sales team to reach you?',
+        options: {
+          phone: 'Phone call',
+          email: 'Email',
+          either: 'Either phone or email',
+        },
+        submitButton: 'Request a Demo',
+      },
+    },
+    confirmation: {
+      title: 'Request received',
+      message: "Thank you for your interest in onlinePOS. We'll get back to you shortly.",
+      submitAnother: 'Submit another request',
+    },
+    navigation: {
+      back: 'Back',
+      next: 'Continue',
+      submitting: 'Submitting request...',
+    },
+    validation: {
+      nameRequired: 'Full name is required',
+      businessNameRequired: 'Business name is required',
+      emailRequired: 'Email address is required',
+      emailInvalid: 'Please enter a valid email address',
+      businessTypeRequired: 'Please select a business type',
+      interestsRequired: 'Please select at least one interest',
+      submitFailed: 'Submission failed. Please check your connection and try again.',
     },
   },
   finalCta: {

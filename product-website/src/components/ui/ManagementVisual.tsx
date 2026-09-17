@@ -1,5 +1,5 @@
 import { cn } from '@/lib/cn'
-import imgStats from '@/assets/onine-pos-logo.jpg';
+import imgStats from '@/assets/stats-pos.png'
 
 export interface ManagementVisualProps {
   /** Localized accessible name */

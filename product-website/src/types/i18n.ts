@@ -107,15 +107,81 @@ export interface ContactFormTranslations {
   requiredFieldNote: string
   submitLabel: string
   submittingLabel: string
-  /**
-   * Shown after submit instead of a fake success message — there is no
-   * backend/API yet, so this must never claim the message was sent.
-   */
   submittedMessage: string
 }
 
 export interface ContactTranslations extends SectionIntro {
   form: ContactFormTranslations
+}
+
+export interface DemoWizardTranslations {
+  stepIndicator: string
+  steps: {
+    step1: {
+      title: string
+      description: string
+      fullName: string
+      businessName: string
+      email: string
+      phone: string
+    }
+    step2: {
+      title: string
+      description: string
+      options: {
+        restaurant: string
+        shop: string
+        warehouse: string
+        other: string
+      }
+    }
+    step3: {
+      title: string
+      description: string
+      options: {
+        pos: string
+        stock: string
+        fiscalization: string
+        reports: string
+        multiLocation: string
+        other: string
+      }
+    }
+    step4: {
+      title: string
+      description: string
+      placeholder: string
+    }
+    step5: {
+      title: string
+      description: string
+      options: {
+        phone: string
+        email: string
+        either: string
+      }
+      submitButton: string
+    }
+  }
+  confirmation: {
+    title: string
+    message: string
+    submitAnother: string
+  }
+  navigation: {
+    back: string
+    next: string
+    submitting: string
+  }
+  validation: {
+    nameRequired: string
+    businessNameRequired: string
+    emailRequired: string
+    emailInvalid: string
+    businessTypeRequired: string
+    interestsRequired: string
+    submitFailed: string
+  }
 }
 
 export interface FinalCtaTranslations extends SectionIntro {
@@ -134,5 +200,6 @@ export interface Translations {
   fiscalization: FiscalizationTranslations
   payments: PaymentsTranslations
   contact: ContactTranslations
+  demoWizard: DemoWizardTranslations
   finalCta: FinalCtaTranslations
 }

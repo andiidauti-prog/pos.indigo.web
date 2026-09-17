@@ -51,12 +51,15 @@ export function IndustryCard({ id, icon: Icon, title, description, className }: 
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent" />
           </>
         ) : isWarehouse ? (
-          <img
-            src={wearhouseImg}
-            alt="Warehouse POS system"
-            className="h-full w-full object-cover object-center"
-            loading="lazy"
-          />
+          <>
+            <img
+              src={wearhouseImg}
+              alt="Warehouse POS system"
+              className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent" />
+          </>
         ) : (
           <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-br from-stone-900 via-amber-950/30 to-stone-950 p-6">
             <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#d3872c_1px,transparent_1px)] [background-size:12px_12px]" />

@@ -20,8 +20,11 @@ export function Footer() {
       <Container className="flex flex-col gap-12 py-16">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
           <div className="flex flex-col gap-4">
-            <Link to="/" className="flex items-center">
-              <img src={logo} alt="onlinePOS logo" className="h-8 w-auto object-contain" />
+            <Link
+              to="/"
+              className="focus-ring flex w-fit items-center rounded-xl border border-stone-800 bg-stone-950 px-3 py-1.5 shadow-sm transition-transform hover:scale-[1.02]"
+            >
+              <img src={logo} alt="onlinePOS logo" className="h-7 w-auto object-contain" />
             </Link>
             <Button to={CONTACT_ROUTE} variant="outline" size="sm" className="w-fit">
               {t.nav.requestDemo}

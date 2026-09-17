@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { cn } from '@/lib/cn'
 import pic1 from '@/assets/pic-1.png'
 import pic2 from '@/assets/pic-2.png'
-import imgMenu from '@/assets/image.png'
-import imgStats from '@/assets/onine-pos-logo.jpg';
+import imgMenu from '@/assets/image.jpg'
+import imgOrders from '@/assets/image-3.jpg'
+import imgTables from '@/assets/tables-pos.jpg'
+import imgStats from '@/assets/stats-pos.png'
 
 export interface ProductShowcaseVisualProps {
   /** Localized accessible name */
@@ -11,41 +13,55 @@ export interface ProductShowcaseVisualProps {
   className?: string
 }
 
-type TabKey = 'admin' | 'terminal' | 'menu' | 'stats'
+type TabKey = 'terminal' | 'admin' | 'menu' | 'orders' | 'tables' | 'stats'
 
 const tabs: { key: TabKey; label: string; src: string; alt: string; tag: string }[] = [
   {
-    key: 'admin',
-    label: 'Admin Setup & Printer',
-    src: pic2,
-    alt: 'onlinePOS admin management setup featuring touchscreen terminal and compact thermal receipt printer (pic-2)',
+    key: 'terminal',
+    label: 'POS Terminal',
+    src: pic1,
+    alt: 'onlinePOS touchscreen hardware terminal in live restaurant counter environment',
     tag: 'Hardware Photo',
   },
   {
-    key: 'terminal',
-    label: 'POS Order Terminal',
-    src: pic1,
-    alt: 'onlinePOS touchscreen hardware terminal in restaurant lounge counter setting (pic-1)',
+    key: 'admin',
+    label: 'Printer & Admin Setup',
+    src: pic2,
+    alt: 'onlinePOS hardware setup with touchscreen monitor and compact thermal receipt printer',
     tag: 'Hardware Photo',
   },
   {
     key: 'menu',
     label: 'Cashier Interface',
     src: imgMenu,
-    alt: 'onlinePOS touchscreen cashier order menu interface screen',
+    alt: 'onlinePOS intuitive touchscreen order cashier interface',
+    tag: 'Software Screen',
+  },
+  {
+    key: 'orders',
+    label: 'Orders & Checkout',
+    src: imgOrders,
+    alt: 'onlinePOS table service order management and billing checkout screen',
+    tag: 'Software Screen',
+  },
+  {
+    key: 'tables',
+    label: 'Tables & Zones',
+    src: imgTables,
+    alt: 'onlinePOS real-time floor plan table availability management',
     tag: 'Software Screen',
   },
   {
     key: 'stats',
     label: 'Revenue Analytics',
     src: imgStats,
-    alt: 'onlinePOS administration revenue statistics and analytics screen',
+    alt: 'onlinePOS revenue statistics and business performance analytics dashboard',
     tag: 'Software Screen',
   },
 ]
 
 export function ProductShowcaseVisual({ ariaLabel, className }: ProductShowcaseVisualProps) {
-  const [activeTab, setActiveTab] = useState<TabKey>('admin')
+  const [activeTab, setActiveTab] = useState<TabKey>('terminal')
 
   const currentItem = tabs.find((t) => t.key === activeTab) || tabs[0]
 

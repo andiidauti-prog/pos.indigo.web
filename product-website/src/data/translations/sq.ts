@@ -150,9 +150,9 @@ export const sq: Translations = {
     visualLabel: 'Pamje vizuale e pagesave (së shpejti)',
   },
   contact: {
-    eyebrow: 'NA KONTAKTONI',
+    eyebrow: 'KËRKONI DEMO',
     headline: 'Zbuloni si onlinePOS mund të ndihmojë biznesin tuaj.',
-    supportingText: 'Kërkoni një demo ose kontaktoni ekipin tonë të shitjeve për më shumë informacione.',
+    supportingText: 'Plotësoni këtë kërkesë të shpejtë hap pas hapi dhe ekipi ynë do t’ju kontaktojë.',
     form: {
       nameLabel: 'Emri',
       companyLabel: 'Kompania',
@@ -171,6 +171,75 @@ export const sq: Translations = {
       submitLabel: 'Dërgo',
       submittingLabel: 'Duke dërguar...',
       submittedMessage: 'Formulari është gati të lidhet me sistemin e dërgimit.',
+    },
+  },
+  demoWizard: {
+    stepIndicator: 'Hapi {current} nga {total}',
+    steps: {
+      step1: {
+        title: 'Informatat e kontaktit',
+        description: 'Jepni të dhënat tuaja që ekipi ynë t’ju kontaktojë.',
+        fullName: 'Emri dhe mbiemri',
+        businessName: 'Emri i biznesit',
+        email: 'Adresa email',
+        phone: 'Numri i telefonit (opsionale)',
+      },
+      step2: {
+        title: 'Na tregoni për biznesin tuaj',
+        description: 'Zgjidhni sektorin kryesor që përshkruan veprimtarinë tuaj.',
+        options: {
+          restaurant: 'Restorant / Kafene',
+          shop: 'Dyqan / Shitje me pakicë',
+          warehouse: 'Depo / Shitje me shumicë',
+          other: 'Biznes tjetër',
+        },
+      },
+      step3: {
+        title: 'Për çfarë jeni të interesuar?',
+        description: 'Zgjidhni të gjitha funksionalitetet që ju nevojiten.',
+        options: {
+          pos: 'Pikë Shitjeje (POS)',
+          stock: 'Menaxhim i stokut',
+          fiscalization: 'Fiskalizim',
+          reports: 'Raporte dhe statistika',
+          multiLocation: 'Lokacione të shumta',
+          other: 'Funksionalitete të tjera',
+        },
+      },
+      step4: {
+        title: 'Informata shtesë',
+        description: 'Na tregoni pak më shumë për atë që kërkoni.',
+        placeholder: 'Përshkruani nevojat tuaja, pajisjet ose afatin kohor...',
+      },
+      step5: {
+        title: 'Mënyra e preferuar e kontaktit',
+        description: 'Si dëshironi që ekipi ynë i shitjeve t’ju kontaktojë?',
+        options: {
+          phone: 'Thirrje telefonike',
+          email: 'Email',
+          either: 'Cilado mënyrë (telefon ose email)',
+        },
+        submitButton: 'Kërkoni një Demo',
+      },
+    },
+    confirmation: {
+      title: 'Kërkesa u pranua',
+      message: 'Faleminderit për interesimin tuaj për onlinePOS. Do t’ju kontaktojmë së shpejti.',
+      submitAnother: 'Dërgoni një kërkesë tjetër',
+    },
+    navigation: {
+      back: 'Mbrapa',
+      next: 'Vazhdo',
+      submitting: 'Duke dërguar kërkesën...',
+    },
+    validation: {
+      nameRequired: 'Shkruani emrin dhe mbiemrin',
+      businessNameRequired: 'Shkruani emrin e biznesit',
+      emailRequired: 'Shkruani adresën email',
+      emailInvalid: 'Ju lutemi shkruani një adresë email të vlefshme',
+      businessTypeRequired: 'Zgjidhni llojin e biznesit',
+      interestsRequired: 'Zgjidhni të paktën një opsion',
+      submitFailed: 'Dërgimi dështoi. Ju lutemi kontrolloni lidhjen tuaj dhe provoni përsëri.',
     },
   },
   finalCta: {

@@ -49,8 +49,11 @@ export function Navbar() {
     >
       <Container>
         <div className="flex h-16 items-center justify-between gap-6">
-          <Link to="/" className="flex items-center">
-            <img src={logo} alt="onlinePOS logo" className="h-8 w-auto object-contain" />
+          <Link
+            to="/"
+            className="focus-ring flex items-center rounded-xl border border-stone-800 bg-stone-950 px-3 py-1.5 shadow-sm transition-transform hover:scale-[1.02]"
+          >
+            <img src={logo} alt="onlinePOS logo" className="h-7 w-auto object-contain" />
           </Link>
 
           <nav className="hidden items-stretch gap-1 lg:flex" aria-label="Primary">
