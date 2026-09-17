@@ -29,14 +29,13 @@ export interface SectionIntro {
   supportingText: string
 }
 
-export type NavItemId = 'home' | 'features' | 'businesses' | 'about' | 'contact'
+export type NavItemId = 'home' | 'contact'
 export type FooterGroupId = 'product' | 'company'
 
 export type CapabilityId = 'sales' | 'inventory' | 'fiscalization' | 'reports' | 'remoteManagement' | 'payments'
 export type IndustryId = 'restaurants' | 'stores' | 'warehouses' | 'other'
 export type ManagementAreaId = 'reports' | 'remoteManagement' | 'inventorySales'
 export type PaymentMethodId = 'cash' | 'card' | 'other'
-export type BusinessTypeId = 'restaurant' | 'store' | 'warehouse' | 'other'
 
 export interface NavTranslations extends Record<NavItemId, string> {
   requestDemo: string
@@ -95,24 +94,7 @@ export interface PaymentsTranslations extends SectionIntro {
   visualLabel: string
 }
 
-export interface ContactFormTranslations {
-  nameLabel: string
-  companyLabel: string
-  emailLabel: string
-  phoneLabel: string
-  businessTypeLabel: string
-  businessTypePlaceholder: string
-  businessTypeOptions: Record<BusinessTypeId, string>
-  messageLabel: string
-  requiredFieldNote: string
-  submitLabel: string
-  submittingLabel: string
-  submittedMessage: string
-}
-
-export interface ContactTranslations extends SectionIntro {
-  form: ContactFormTranslations
-}
+export type ContactTranslations = SectionIntro
 
 export interface DemoWizardTranslations {
   stepIndicator: string
@@ -160,6 +142,13 @@ export interface DemoWizardTranslations {
         email: string
         either: string
       }
+      summary: {
+        title: string
+        contactLabel: string
+        emailLabel: string
+        /** Contains the literal placeholder "{count}", replaced at render time. */
+        interestsLabel: string
+      }
       submitButton: string
     }
   }
@@ -178,8 +167,10 @@ export interface DemoWizardTranslations {
     businessNameRequired: string
     emailRequired: string
     emailInvalid: string
+    phoneRequired: string
     businessTypeRequired: string
     interestsRequired: string
+    preferredContactRequired: string
     submitFailed: string
   }
 }

@@ -1,5 +1,5 @@
 import { cn } from '@/lib/cn'
-import imgStats from '@/assets/stats-pos.png'
+import imgStats from '@/assets/stats-pos.jpg'
 
 export interface ManagementVisualProps {
   /** Localized accessible name */

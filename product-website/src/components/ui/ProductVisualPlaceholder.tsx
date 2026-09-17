@@ -1,6 +1,6 @@
 import { cn } from '@/lib/cn'
-import pic1 from '@/assets/pic-1.png'
-import pic2 from '@/assets/pic-2.png'
+import pic1 from '@/assets/pic-1.jpg'
+import pic2 from '@/assets/pic-2.jpg'
 
 export interface ProductVisualPlaceholderProps {
   className?: string

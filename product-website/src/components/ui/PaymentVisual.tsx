@@ -1,5 +1,5 @@
 import { cn } from '@/lib/cn'
-import imgOrders from '@/assets/image-3.jpg'
+import imgOrders from '@/assets/orders-checkout.jpg'
 
 export interface PaymentVisualProps {
   /** Localized accessible name */

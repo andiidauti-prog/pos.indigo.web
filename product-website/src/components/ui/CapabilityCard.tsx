@@ -25,7 +25,8 @@ export function CapabilityCard({
       className={cn(
         'rounded-xl border border-border bg-surface p-6 shadow-card transition-all duration-200',
         'hover:-translate-y-0.5 hover:border-border-strong hover:shadow-card-hover',
-        isFeatured && 'bg-brand-50/40',
+        isFeatured && 'border-brand-200/70 bg-gradient-to-br from-brand-50/60 via-surface to-surface',
+        isBanner && 'border-brand-200/70 bg-gradient-to-r from-brand-50/50 via-surface to-surface',
         isBanner ? 'flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6' : 'flex flex-col gap-4',
         className,
       )}

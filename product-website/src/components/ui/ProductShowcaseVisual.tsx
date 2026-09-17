@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { cn } from '@/lib/cn'
-import pic1 from '@/assets/pic-1.png'
-import pic2 from '@/assets/pic-2.png'
-import imgMenu from '@/assets/image.jpg'
-import imgOrders from '@/assets/image-3.jpg'
+import pic1 from '@/assets/pic-1.jpg'
+import pic2 from '@/assets/pic-2.jpg'
+import imgMenu from '@/assets/cashier-interface.jpg'
+import imgOrders from '@/assets/orders-checkout.jpg'
 import imgTables from '@/assets/tables-pos.jpg'
-import imgStats from '@/assets/stats-pos.png'
+import imgStats from '@/assets/stats-pos.jpg'
 
 export interface ProductShowcaseVisualProps {
   /** Localized accessible name */

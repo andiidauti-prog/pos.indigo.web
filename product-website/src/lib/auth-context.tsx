@@ -73,11 +73,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function signIn(email: string, pass: string): Promise<{ error: Error | null }> {
     if (!isSupabaseConfigured) {
-      if (email.trim() && pass.length >= 6) {
+      if (import.meta.env.DEV && email.trim() && pass.length >= 6) {
         signInDemo(email)
         return { error: null }
       }
-      return { error: new Error('Invalid credentials. Password must be at least 6 characters.') }
+      return {
+        error: new Error(
+          'Admin sign-in is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY for this environment.',
+        ),
+      }
     }
 
     try {

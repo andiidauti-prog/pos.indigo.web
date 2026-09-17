@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react'
 import { cn } from '@/lib/cn'
-import pic2 from '@/assets/pic-2.png'
+import pic2 from '@/assets/pic-2.jpg'
 
 export interface FiscalizationVisualProps {
   /** Localized accessible name */

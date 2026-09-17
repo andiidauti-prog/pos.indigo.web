@@ -47,7 +47,7 @@ export function AdminLoginPage() {
             <img src={logo} alt="onlinePOS logo" className="h-10 w-auto object-contain" />
           </div>
           <h1 className="mt-6 text-2xl font-bold tracking-tight text-white sm:text-3xl">Admin Console</h1>
-          <p className="mt-2 text-sm text-stone-400">Sign in to manage lead requests & sales pipeline</p>
+          <p className="mt-2 text-sm text-stone-400">Sign in to manage demo requests and your sales pipeline</p>
         </div>
 
         <Card className="border-stone-800 bg-stone-900/90 p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-6">
@@ -107,18 +107,20 @@ export function AdminLoginPage() {
             </Button>
           </form>
 
-          <div className="relative flex items-center justify-center border-t border-stone-800 pt-5">
-            <Button
-              type="button"
-              variant="outline"
-              size="md"
-              onClick={handleDemoLogin}
-              className="w-full border-stone-800 bg-stone-950 text-amber-400 hover:bg-stone-800 hover:text-amber-300"
-            >
-              <Sparkles className="mr-2 h-4 w-4" />
-              Sign In with Demo Mode (Instant Preview)
-            </Button>
-          </div>
+          {import.meta.env.DEV && (
+            <div className="relative flex items-center justify-center border-t border-stone-800 pt-5">
+              <Button
+                type="button"
+                variant="outline"
+                size="md"
+                onClick={handleDemoLogin}
+                className="w-full border-stone-800 bg-stone-950 text-amber-400 hover:bg-stone-800 hover:text-amber-300"
+              >
+                <Sparkles className="mr-2 h-4 w-4" />
+                Sign In with Demo Mode (Dev Only)
+              </Button>
+            </div>
+          )}
         </Card>
       </div>
     </div>

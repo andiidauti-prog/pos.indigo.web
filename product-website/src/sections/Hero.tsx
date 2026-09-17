@@ -36,7 +36,7 @@ export function Hero() {
             <p className="text-sm font-semibold tracking-wide text-brand-600">{t.hero.eyebrow}</p>
 
             {/* Sized to stay on two lines down to ~360px phones and once xl:grid-cols-2 narrows this column. */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl">
               {t.hero.headlineLines.map((line) => (
                 <span key={line} className="block">
                   {line}

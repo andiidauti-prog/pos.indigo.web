@@ -53,6 +53,7 @@ export function AdminDashboardPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('all')
   const [selectedLead, setSelectedLead] = useState<LeadRecord | null>(null)
+  const [modalError, setModalError] = useState<string | null>(null)
   const [noteText, setNoteText] = useState('')
   const [isSavingNote, setIsSavingNote] = useState(false)
   const [saveNoteSuccess, setSaveNoteSuccess] = useState(false)
@@ -121,9 +122,11 @@ export function AdminDashboardPage() {
     setSelectedLead(lead)
     setNoteText(lead.admin_notes || '')
     setSaveNoteSuccess(false)
+    setModalError(null)
   }
 
   async function handleStatusChange(leadId: string, newStatus: StatusType) {
+    setModalError(null)
     try {
       if (isSupabaseConfigured) {
         const { error } = await supabase
@@ -149,7 +152,7 @@ export function AdminDashboardPage() {
       }
     } catch (err) {
       console.error('Status update failed:', err)
-      alert('Could not update status. Please try again.')
+      setModalError('Could not update status. Please try again.')
     }
   }
 
@@ -157,6 +160,7 @@ export function AdminDashboardPage() {
     if (!selectedLead) return
     setIsSavingNote(true)
     setSaveNoteSuccess(false)
+    setModalError(null)
 
     try {
       if (isSupabaseConfigured) {
@@ -183,7 +187,7 @@ export function AdminDashboardPage() {
       setTimeout(() => setSaveNoteSuccess(false), 3000)
     } catch (err) {
       console.error('Note update failed:', err)
-      alert('Failed to save internal notes.')
+      setModalError('Failed to save internal notes. Please try again.')
     } finally {
       setIsSavingNote(false)
     }
@@ -257,7 +261,7 @@ export function AdminDashboardPage() {
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">Demo Requests</h1>
-            <p className="text-sm text-stone-400">Incoming SaaS leads & pipeline management</p>
+            <p className="text-sm text-stone-400">Demo requests from your website, ready to follow up</p>
           </div>
 
           <Button
@@ -439,6 +443,13 @@ export function AdminDashboardPage() {
                 <X className="h-5 w-5" />
               </button>
             </div>
+
+            {modalError && (
+              <div className="flex items-center gap-2.5 rounded-lg border border-red-500/30 bg-red-950/40 p-3 text-xs text-red-300">
+                <AlertCircle className="h-4 w-4 shrink-0" />
+                <span>{modalError}</span>
+              </div>
+            )}
 
             {/* Status Transition Manager */}
             <div>

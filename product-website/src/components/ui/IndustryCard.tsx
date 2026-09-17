@@ -1,8 +1,8 @@
 import type { LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/cn'
-import pic1 from '@/assets/pic-1.png'
-import pic2 from '@/assets/pic-2.png';
-import wearhouseImg from '@/assets/wearhouse-pos.png';
+import pic1 from '@/assets/pic-1.jpg'
+import pic2 from '@/assets/pic-2.jpg'
+import warehouseImg from '@/assets/warehouse-pos.jpg'
 
 export interface IndustryCardProps {
   id?: string
@@ -53,7 +53,7 @@ export function IndustryCard({ id, icon: Icon, title, description, className }: 
         ) : isWarehouse ? (
           <>
             <img
-              src={wearhouseImg}
+              src={warehouseImg}
               alt="Warehouse POS system"
               className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               loading="lazy"

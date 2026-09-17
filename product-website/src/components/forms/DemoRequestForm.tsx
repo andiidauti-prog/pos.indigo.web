@@ -14,7 +14,7 @@ export interface DemoFormData {
   business_type: 'restaurant' | 'shop' | 'warehouse' | 'other' | ''
   interests: string[]
   message: string
-  preferred_contact: 'phone' | 'email' | 'either'
+  preferred_contact: 'phone' | 'email' | 'either' | ''
 }
 
 const initialFormData: DemoFormData = {
@@ -25,7 +25,7 @@ const initialFormData: DemoFormData = {
   business_type: '',
   interests: [],
   message: '',
-  preferred_contact: 'either',
+  preferred_contact: '',
 }
 
 export function DemoRequestForm() {
@@ -73,6 +73,9 @@ export function DemoRequestForm() {
       } else if (!emailRegex.test(formData.email.trim())) {
         newErrors.email = t.demoWizard.validation.emailInvalid
       }
+      if (!formData.phone.trim()) {
+        newErrors.phone = t.demoWizard.validation.phoneRequired
+      }
     } else if (step === 2) {
       if (!formData.business_type) {
         newErrors.business_type = t.demoWizard.validation.businessTypeRequired
@@ -80,6 +83,10 @@ export function DemoRequestForm() {
     } else if (step === 3) {
       if (formData.interests.length === 0) {
         newErrors.interests = t.demoWizard.validation.interestsRequired
+      }
+    } else if (step === 5) {
+      if (!formData.preferred_contact) {
+        newErrors.preferred_contact = t.demoWizard.validation.preferredContactRequired
       }
     }
 
@@ -112,7 +119,7 @@ export function DemoRequestForm() {
       business_type: formData.business_type || 'other',
       interests: formData.interests,
       message: formData.message.trim(),
-      preferred_contact: formData.preferred_contact,
+      preferred_contact: formData.preferred_contact || 'either',
       status: 'new',
     }
 
@@ -257,15 +264,19 @@ export function DemoRequestForm() {
 
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-ink">
-                  {t.demoWizard.steps.step1.phone}
+                  {t.demoWizard.steps.step1.phone} *
                 </label>
                 <input
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => updateField('phone', e.target.value)}
                   placeholder="+389 70 123 456"
-                  className="mt-1.5 focus-ring w-full rounded-lg border border-border bg-surface px-3.5 py-2.5 text-sm text-ink transition-colors hover:border-border-strong"
+                  className={cn(
+                    'mt-1.5 focus-ring w-full rounded-lg border bg-surface px-3.5 py-2.5 text-sm text-ink transition-colors',
+                    errors.phone ? 'border-danger' : 'border-border hover:border-border-strong',
+                  )}
                 />
+                {errors.phone && <p className="mt-1 text-xs text-danger">{errors.phone}</p>}
               </div>
             </div>
           </div>
@@ -406,6 +417,10 @@ export function DemoRequestForm() {
               <p className="mt-1 text-sm text-ink-muted">{t.demoWizard.steps.step5.description}</p>
             </div>
 
+            {errors.preferred_contact && (
+              <p className="text-xs font-medium text-danger">{errors.preferred_contact}</p>
+            )}
+
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               {[
                 { key: 'phone', label: t.demoWizard.steps.step5.options.phone, icon: Phone },
@@ -435,15 +450,22 @@ export function DemoRequestForm() {
 
             {/* Summary Box */}
             <div className="rounded-xl border border-border bg-surface-muted p-4 text-xs text-ink-muted">
-              <h4 className="font-semibold uppercase tracking-wider text-ink mb-2">Request Summary</h4>
+              <h4 className="font-semibold uppercase tracking-wider text-ink mb-2">
+                {t.demoWizard.steps.step5.summary.title}
+              </h4>
               <p>
-                <strong className="text-ink">Contact:</strong> {formData.contact_name} ({formData.business_name})
+                <strong className="text-ink">{t.demoWizard.steps.step5.summary.contactLabel}:</strong>{' '}
+                {formData.contact_name} ({formData.business_name})
               </p>
               <p>
-                <strong className="text-ink">Email:</strong> {formData.email} {formData.phone ? `| ${formData.phone}` : ''}
+                <strong className="text-ink">{t.demoWizard.steps.step5.summary.emailLabel}:</strong>{' '}
+                {formData.email} {formData.phone ? `| ${formData.phone}` : ''}
               </p>
               <p className="mt-1">
-                <strong className="text-ink">Interests:</strong> {formData.interests.length} feature area(s) selected
+                {t.demoWizard.steps.step5.summary.interestsLabel.replace(
+                  '{count}',
+                  String(formData.interests.length),
+                )}
               </p>
             </div>
 
