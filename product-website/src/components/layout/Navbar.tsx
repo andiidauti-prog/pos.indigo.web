@@ -50,15 +50,15 @@ export function Navbar() {
       )}
     >
       <Container>
-        <div className="flex h-16 items-center justify-between gap-6">
+        <div className="flex h-16 items-center justify-between gap-4 lg:gap-6">
           <Link
             to="/"
-            className="focus-ring flex items-center rounded-xl border border-stone-800 bg-stone-950 px-3 py-1.5 shadow-sm transition-transform hover:scale-[1.02]"
+            className="focus-ring flex shrink-0 items-center rounded-xl border border-stone-800 bg-stone-950 px-3 py-2 shadow-sm transition-transform hover:scale-[1.02]"
           >
             <img src={logo} alt="onlinePOS logo" className="h-7 w-auto object-contain" />
           </Link>
 
-          <nav className="hidden items-stretch gap-1 lg:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
             {navItems.map((item) => (
               <NavLink
                 key={item.to}
@@ -66,7 +66,7 @@ export function Navbar() {
                 end={item.to === '/'}
                 className={({ isActive }) =>
                   cn(
-                    'flex items-center border-b-2 px-3 text-sm font-medium transition-colors',
+                    'flex items-center border-b-2 px-3 py-3 text-sm font-medium transition-colors',
                     isActive
                       ? 'border-brand-600 text-brand-600'
                       : 'border-transparent text-ink-muted hover:text-ink',
@@ -78,7 +78,7 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-4 lg:flex">
+          <div className="hidden items-center gap-3 md:flex lg:gap-4">
             <LanguageSelector />
             <Button to={CONTACT_ROUTE} size="sm">
               {t.nav.requestDemo}
@@ -91,7 +91,7 @@ export function Navbar() {
             aria-expanded={isMobileOpen}
             aria-controls="mobile-menu"
             aria-label={isMobileOpen ? t.nav.closeMenu : t.nav.openMenu}
-            className="focus-ring inline-flex items-center justify-center rounded-md p-2 text-ink lg:hidden"
+            className="focus-ring -mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md text-ink md:hidden"
           >
             {isMobileOpen ? (
               <X className="h-6 w-6" aria-hidden="true" />

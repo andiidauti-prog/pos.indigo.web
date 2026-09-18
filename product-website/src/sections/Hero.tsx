@@ -26,17 +26,17 @@ export function Hero() {
   return (
     <section className="bg-surface pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
       <Container>
-        <div className="grid items-center gap-12 xl:grid-cols-2 xl:gap-16">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-12 xl:gap-16">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={contentVariants}
-            className="flex flex-col gap-6 xl:gap-8"
+            className="flex flex-col gap-6 lg:gap-8"
           >
             <p className="text-sm font-semibold tracking-wide text-brand-600">{t.hero.eyebrow}</p>
 
-            {/* Sized to stay on two lines down to ~360px phones and once xl:grid-cols-2 narrows this column. */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl">
+            {/* text-display: fluid on phones/tablets, resized for the half-width column from lg. */}
+            <h1 className="text-display">
               {t.hero.headlineLines.map((line) => (
                 <span key={line} className="block">
                   {line}
@@ -44,13 +44,13 @@ export function Hero() {
               ))}
             </h1>
 
-            <p className="max-w-xl text-lg text-ink-muted">{t.hero.supportingText}</p>
+            <p className="max-w-xl text-base text-ink-muted sm:text-lg">{t.hero.supportingText}</p>
 
-            <div className="flex flex-wrap items-center gap-4">
-              <Button to={CONTACT_ROUTE} size="lg">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+              <Button to={CONTACT_ROUTE} size="lg" className="w-full sm:w-auto">
                 {t.nav.requestDemo}
               </Button>
-              <Button to={CONTACT_ROUTE} size="lg" variant="outline">
+              <Button to={CONTACT_ROUTE} size="lg" variant="outline" className="w-full sm:w-auto">
                 {t.nav.contactSales}
               </Button>
             </div>
@@ -60,7 +60,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             variants={visualVariants}
-            className="mx-auto w-full max-w-2xl xl:max-w-none"
+            className="mx-auto w-full max-w-2xl lg:max-w-none"
           >
             <ProductVisualPlaceholder />
           </motion.div>

@@ -1,5 +1,5 @@
 import { cn } from '@/lib/cn'
-import imgOrders from '@/assets/orders-checkout.jpg'
+import imgPayments from '@/assets/pos-picture-335.jpg'
 
 export interface PaymentVisualProps {
   /** Localized accessible name */
@@ -8,39 +8,27 @@ export interface PaymentVisualProps {
 }
 
 /**
- * Display real onlinePOS Orders & Payment processing screen.
+ * Real onlinePOS counter photo with the orders screen, receipt printer and
+ * card reader in frame. Cropped to 4:3 around the screen and payment hardware;
+ * shown as a photo card (no window chrome) to differ from the screenshot frames.
  */
 export function PaymentVisual({ ariaLabel, className }: PaymentVisualProps) {
   return (
     <div
       role="img"
       aria-label={ariaLabel}
-      className={cn('group overflow-hidden rounded-2xl border border-border bg-surface shadow-xl', className)}
+      className={cn(
+        'group rounded-3xl bg-gradient-to-br from-brand-50 via-brand-100/40 to-surface-muted p-2.5 sm:p-3',
+        className,
+      )}
     >
-      {/* Window chrome */}
-      <div className="flex items-center justify-between border-b border-border bg-surface-muted px-4 py-3">
-        <div className="flex items-center gap-2">
-          <div className="flex gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-slate-300" />
-            <span className="h-2.5 w-2.5 rounded-full bg-slate-300" />
-            <span className="h-2.5 w-2.5 rounded-full bg-slate-300" />
-          </div>
-          <div className="ml-2 flex items-center gap-1.5 rounded-md bg-surface px-2.5 py-1 text-xs font-medium text-ink-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-600" />
-            onlinePOS Order & Payment Checkout
-          </div>
-        </div>
-        <span className="rounded bg-brand-50 px-2 py-0.5 text-[11px] font-semibold text-brand-600">
-          Transactions
-        </span>
-      </div>
-
-      {/* Real Orders & Payments Screenshot */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-stone-900">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-stone-900 shadow-xl ring-1 ring-stone-900/10">
         <img
-          src={imgOrders}
-          alt="onlinePOS active order billing and payment checkout screen"
-          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
+          src={imgPayments}
+          alt="onlinePOS orders screen beside a receipt printer and card reader at the counter"
+          width={1432}
+          height={736}
+          className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
           loading="lazy"
         />
       </div>

@@ -36,11 +36,11 @@ export function FinalCTA() {
 
           <div className="relative z-10">
             <p className="text-sm font-semibold tracking-wide text-brand-600">{t.finalCta.eyebrow}</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl">{t.finalCta.headline}</h2>
+            <h2 className="mt-3 text-heading lg:text-5xl">{t.finalCta.headline}</h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-ink-muted">{t.finalCta.supportingText}</p>
 
             <div className="mt-8 flex justify-center">
-              <Button to={CONTACT_ROUTE} size="lg" className="shadow-lg shadow-brand-600/20">
+              <Button to={CONTACT_ROUTE} size="lg" className="w-full shadow-lg shadow-brand-600/20 sm:w-auto">
                 {t.finalCta.primaryCta}
               </Button>
             </div>

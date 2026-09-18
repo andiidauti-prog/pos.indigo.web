@@ -1,6 +1,6 @@
-import { useState, type FormEvent } from 'react'
+import { useId, useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Lock, LogIn, AlertCircle, Sparkles } from 'lucide-react'
+import { Lock, LogIn, AlertCircle } from 'lucide-react'
 import logo from '@/assets/onine-pos-logo.jpg'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
@@ -8,11 +8,12 @@ import { useAuth } from '@/lib/auth-context'
 
 export function AdminLoginPage() {
   const navigate = useNavigate()
-  const { signIn, signInDemo } = useAuth()
+  const { signIn } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const uid = useId()
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -34,13 +35,8 @@ export function AdminLoginPage() {
     }
   }
 
-  function handleDemoLogin() {
-    signInDemo(email || 'admin@onlinepos.com')
-    navigate('/admin', { replace: true })
-  }
-
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-stone-950 px-4 py-12 text-stone-100">
+    <div className="flex min-h-dvh flex-col items-center justify-center bg-stone-950 px-4 py-8 text-stone-100 sm:py-12">
       <div className="w-full max-w-md space-y-8">
         <div className="flex flex-col items-center text-center">
           <div className="flex items-center rounded-2xl border border-stone-800 bg-stone-900 p-3 shadow-lg">
@@ -50,10 +46,10 @@ export function AdminLoginPage() {
           <p className="mt-2 text-sm text-stone-400">Sign in to manage demo requests and your sales pipeline</p>
         </div>
 
-        <Card className="border-stone-800 bg-stone-900/90 p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-6">
+        <Card className="border-stone-800 bg-stone-900/90 p-5 shadow-2xl backdrop-blur-md sm:p-8">
           <form onSubmit={handleSubmit} className="space-y-5">
             {error && (
-              <div className="flex flex-col gap-2 rounded-lg border border-red-500/30 bg-red-950/40 p-3.5 text-xs text-red-300">
+              <div role="alert" className="flex flex-col gap-2 rounded-lg border border-red-500/30 bg-red-950/40 p-3.5 text-sm text-red-300">
                 <div className="flex items-start gap-2">
                   <AlertCircle className="h-4 w-4 shrink-0 stroke-[2.5] mt-0.5 text-red-400" />
                   <span className="leading-relaxed">{error}</span>
@@ -62,33 +58,40 @@ export function AdminLoginPage() {
             )}
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-stone-300">
+              <label htmlFor={`${uid}-email`} className="block text-xs font-semibold uppercase tracking-wider text-stone-300">
                 Admin Email
               </label>
               <input
+                id={`${uid}-email`}
+                name="email"
                 type="email"
+                inputMode="email"
+                autoComplete="username"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@onlinepos.com"
-                className="mt-1.5 focus-ring w-full rounded-lg border border-stone-700 bg-stone-950 px-3.5 py-2.5 text-sm text-white placeholder-stone-500 transition-colors hover:border-stone-600"
+                className="mt-1.5 focus-ring min-h-12 w-full rounded-lg border border-stone-700 bg-stone-950 px-3.5 py-2.5 text-base text-white placeholder-stone-400 transition-colors hover:border-stone-600"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-stone-300">
+              <label htmlFor={`${uid}-password`} className="block text-xs font-semibold uppercase tracking-wider text-stone-300">
                 Password
               </label>
               <div className="relative mt-1.5">
                 <input
+                  id={`${uid}-password`}
+                  name="password"
                   type="password"
+                  autoComplete="current-password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="focus-ring w-full rounded-lg border border-stone-700 bg-stone-950 px-3.5 py-2.5 text-sm text-white placeholder-stone-500 transition-colors hover:border-stone-600"
+                  className="focus-ring min-h-12 w-full rounded-lg border border-stone-700 bg-stone-950 py-2.5 pl-3.5 pr-11 text-base text-white placeholder-stone-400 transition-colors hover:border-stone-600"
                 />
-                <Lock className="pointer-events-none absolute right-3.5 top-3 h-4 w-4 text-stone-500" />
+                <Lock aria-hidden="true" className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
               </div>
             </div>
 
@@ -106,21 +109,6 @@ export function AdminLoginPage() {
               )}
             </Button>
           </form>
-
-          {import.meta.env.DEV && (
-            <div className="relative flex items-center justify-center border-t border-stone-800 pt-5">
-              <Button
-                type="button"
-                variant="outline"
-                size="md"
-                onClick={handleDemoLogin}
-                className="w-full border-stone-800 bg-stone-950 text-amber-400 hover:bg-stone-800 hover:text-amber-300"
-              >
-                <Sparkles className="mr-2 h-4 w-4" />
-                Sign In with Demo Mode (Dev Only)
-              </Button>
-            </div>
-          )}
         </Card>
       </div>
     </div>

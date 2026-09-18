@@ -18,7 +18,7 @@ export function CoreCapabilities() {
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold tracking-wide text-brand-600">{t.coreCapabilities.eyebrow}</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">{t.coreCapabilities.headline}</h2>
+          <h2 className="mt-3 text-heading">{t.coreCapabilities.headline}</h2>
           <p className="mt-4 text-lg text-ink-muted">{t.coreCapabilities.supportingText}</p>
         </div>
 

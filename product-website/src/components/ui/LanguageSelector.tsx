@@ -41,7 +41,7 @@ export function LanguageSelector({ variant = 'dropdown', className }: LanguageSe
 
   if (variant === 'inline') {
     return (
-      <div className={cn('flex items-center gap-2', className)} role="group" aria-label={t.languageSelector.selectLanguage}>
+      <div className={cn('flex flex-wrap items-center gap-2', className)} role="group" aria-label={t.languageSelector.selectLanguage}>
         {locales.map((item) => (
           <button
             key={item.code}
@@ -49,7 +49,7 @@ export function LanguageSelector({ variant = 'dropdown', className }: LanguageSe
             aria-pressed={item.code === locale}
             onClick={() => setLocale(item.code)}
             className={cn(
-              'focus-ring rounded-md border px-3 py-1.5 text-sm font-medium transition-colors',
+              'focus-ring inline-flex min-h-11 min-w-12 items-center justify-center rounded-md border px-4 text-sm font-medium transition-colors',
               item.code === locale
                 ? 'border-brand-600 bg-brand-50 text-brand-700'
                 : 'border-border text-ink-muted hover:border-border-strong hover:text-ink',
@@ -72,7 +72,7 @@ export function LanguageSelector({ variant = 'dropdown', className }: LanguageSe
         aria-haspopup="menu"
         aria-expanded={open}
         aria-label={t.languageSelector.selectLanguage}
-        className="focus-ring inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium text-ink-muted transition-colors hover:text-ink"
+        className="focus-ring inline-flex min-h-11 items-center gap-1.5 rounded-md px-2.5 text-sm font-medium text-ink-muted transition-colors hover:text-ink md:pointer-fine:min-h-9"
       >
         <Globe className="h-4 w-4" aria-hidden="true" />
         {current.code.toUpperCase()}
@@ -96,7 +96,7 @@ export function LanguageSelector({ variant = 'dropdown', className }: LanguageSe
                 setOpen(false)
               }}
               className={cn(
-                'flex w-full items-center justify-between px-3 py-2 text-left text-sm transition-colors',
+                'focus-ring flex min-h-11 w-full items-center justify-between px-3 py-2 text-left text-sm transition-colors md:pointer-fine:min-h-9',
                 item.code === locale
                   ? 'font-medium text-brand-600'
                   : 'text-ink-muted hover:bg-surface-muted hover:text-ink',

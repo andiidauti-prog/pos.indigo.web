@@ -16,7 +16,8 @@ export const buttonVariants = cva(
         ghost: 'bg-transparent text-ink hover:bg-surface-muted',
       },
       size: {
-        sm: 'h-9 px-4 text-sm',
+        // 44px touch target by default; compact only for a fine pointer at desktop widths.
+        sm: 'h-11 px-4 text-sm md:pointer-fine:h-9',
         md: 'h-11 px-5 text-sm',
         lg: 'h-12 px-6 text-base',
       },

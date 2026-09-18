@@ -21,7 +21,7 @@ export function Fiscalization() {
   return (
     <section className="border-t border-border bg-surface-muted py-16 sm:py-20 lg:py-24">
       <Container>
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -32,7 +32,7 @@ export function Fiscalization() {
           >
             <div className="max-w-2xl">
               <p className="text-sm font-semibold tracking-wide text-brand-600">{t.fiscalization.eyebrow}</p>
-              <h2 className="mt-3 text-3xl sm:text-4xl">{t.fiscalization.headline}</h2>
+              <h2 className="mt-3 text-heading">{t.fiscalization.headline}</h2>
               <p className="mt-4 text-lg text-ink-muted">{t.fiscalization.supportingText}</p>
             </div>
 

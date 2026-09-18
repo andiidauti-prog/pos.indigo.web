@@ -1,7 +1,7 @@
 import type { LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/cn'
-import pic1 from '@/assets/pic-1.jpg'
-import pic2 from '@/assets/pic-2.jpg'
+import restaurantImg from '@/assets/pos-picture-334.jpg'
+import storeImg from '@/assets/pic-2.jpg'
 import warehouseImg from '@/assets/warehouse-pos.jpg'
 
 export interface IndustryCardProps {
@@ -13,8 +13,9 @@ export interface IndustryCardProps {
 }
 
 /**
- * Editorial industry card featuring real product photos for Hospitality/Retail
- * and rich decorative hardware visual compositions for Warehouses/Enterprises.
+ * Editorial industry card. Each real product photo is used once site-wide:
+ * restaurants (pos-picture-334), stores (pic-2), warehouses (warehouse-pos).
+ * The remaining card uses a decorative composition instead of a repeated photo.
  */
 export function IndustryCard({ id, icon: Icon, title, description, className }: IndustryCardProps) {
   const isRestaurant = id === 'restaurants'
@@ -33,7 +34,7 @@ export function IndustryCard({ id, icon: Icon, title, description, className }: 
         {isRestaurant ? (
           <>
             <img
-              src={pic1}
+              src={restaurantImg}
               alt={title}
               className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
@@ -43,7 +44,7 @@ export function IndustryCard({ id, icon: Icon, title, description, className }: 
         ) : isStore ? (
           <>
             <img
-              src={pic2}
+              src={storeImg}
               alt={title}
               className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
@@ -54,7 +55,7 @@ export function IndustryCard({ id, icon: Icon, title, description, className }: 
           <>
             <img
               src={warehouseImg}
-              alt="Warehouse POS system"
+              alt={title}
               className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
             />

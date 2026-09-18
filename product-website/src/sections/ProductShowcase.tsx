@@ -34,7 +34,7 @@ export function ProductShowcase() {
           className="mx-auto max-w-2xl text-center"
         >
           <p className="text-sm font-semibold tracking-wide text-brand-600">{t.productShowcase.eyebrow}</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">{t.productShowcase.headline}</h2>
+          <h2 className="mt-3 text-heading">{t.productShowcase.headline}</h2>
           <p className="mt-4 text-lg text-ink-muted">{t.productShowcase.supportingText}</p>
         </motion.div>
 

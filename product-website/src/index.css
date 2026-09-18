@@ -24,8 +24,8 @@
   --color-brand-300: #e2a65a;
   --color-brand-400: #d3872c;
   --color-brand-500: #b46f1e;
-  --color-brand-600: #b4792a;
-  --color-brand-700: #8c571c;
+  --color-brand-600: #9a651d;
+  --color-brand-700: #80501a;
   --color-brand-800: #71451a;
   --color-brand-900: #5c3919;
   --color-brand-950: #361f0b;
@@ -77,6 +77,21 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* Fluid scaling on very large monitors: every rem-based size, spacing value and
+     max-width (incl. the max-w-7xl container) grows proportionally, so content stays
+     balanced instead of floating small in a wide viewport. */
+  @media (min-width: 1920px) {
+    html {
+      font-size: 112.5%;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    html {
+      font-size: 137.5%;
+    }
+  }
+
   h1,
   h2,
   h3,
@@ -85,6 +100,15 @@
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.15;
+    /* Even line lengths, and long MK/SQ words never overflow narrow phones. */
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
   }
 
   ::selection {
@@ -104,5 +128,27 @@
     box-shadow:
       0 0 0 2px var(--color-surface),
       0 0 0 4px var(--color-brand-500);
+  }
+}
+
+/* Section headings (h1 on inner pages, h2 on the home page). Fluid from 26px on 320px
+   phones to 36px, so long MK/SQ words such as "Фискализацијата," fit a 272px column. */
+@utility text-heading {
+  font-size: clamp(1.625rem, 1.1rem + 2.6vw, 2.25rem);
+}
+
+/* Hero headline. Fluid on phones and tablets (single column). From lg the hero is
+   two columns, so the size is reset to fit the half-width column with the longest
+   MK/SQ headline line ("Под ваша контрола." / "Nën kontrollin tuaj."). */
+@utility text-display {
+  font-size: clamp(1.875rem, 1.4rem + 3vw, 3rem);
+  line-height: 1.1;
+
+  @media (min-width: 1024px) {
+    font-size: 2.75rem;
+  }
+
+  @media (min-width: 1280px) {
+    font-size: 3.25rem;
   }
 }

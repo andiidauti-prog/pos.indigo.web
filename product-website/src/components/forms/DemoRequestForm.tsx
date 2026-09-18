@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
 import { Check, CheckCircle2, ChevronLeft, ChevronRight, Store, UtensilsCrossed, Warehouse, Building2, Layers, ShieldCheck, BarChart3, MapPin, Sparkles, Phone, Mail, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
@@ -36,6 +36,22 @@ export function DemoRequestForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const uid = useId()
+  const cardRef = useRef<HTMLDivElement>(null)
+  const isFirstStep = useRef(true)
+
+  // On phones the steps can be taller than the screen: bring the top of the form
+  // back into view when the step changes (skipped on first render).
+  useEffect(() => {
+    if (isFirstStep.current) {
+      isFirstStep.current = false
+      return
+    }
+    const card = cardRef.current
+    if (card && card.getBoundingClientRect().top < 0) {
+      card.scrollIntoView({ block: 'start', behavior: 'smooth' })
+    }
+  }, [currentStep])
 
   function updateField<K extends keyof DemoFormData>(field: K, value: DemoFormData[K]) {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -106,6 +122,12 @@ export function DemoRequestForm() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
+    // "Next" is this form's submit action on steps 1-4, so Enter / the mobile keyboard's
+    // Next-Go key advances the wizard; only step 5 actually submits the lead.
+    if (currentStep < 5) {
+      handleNext()
+      return
+    }
     if (!validateStep(currentStep)) return
 
     setIsSubmitting(true)
@@ -164,14 +186,14 @@ export function DemoRequestForm() {
 
   if (isSubmitted) {
     return (
-      <Card className="mx-auto max-w-xl p-8 text-center shadow-xl">
+      <Card className="mx-auto max-w-xl p-6 text-center shadow-xl sm:p-8">
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 dark:bg-emerald-950/50">
           <CheckCircle2 className="h-10 w-10" />
         </div>
-        <h2 className="mt-4 text-2xl font-bold text-ink">{t.demoWizard.confirmation.title}</h2>
+        <h2 className="mt-4 text-xl font-bold text-ink sm:text-2xl">{t.demoWizard.confirmation.title}</h2>
         <p className="mt-3 text-base text-ink-muted">{t.demoWizard.confirmation.message}</p>
         <div className="mt-8">
-          <Button onClick={resetForm} variant="outline" size="md">
+          <Button onClick={resetForm} variant="outline" size="md" className="w-full sm:w-auto">
             {t.demoWizard.confirmation.submitAnother}
           </Button>
         </div>
@@ -179,19 +201,33 @@ export function DemoRequestForm() {
     )
   }
 
+  const step1Fields = [
+    { key: 'contact_name', label: t.demoWizard.steps.step1.fullName, type: 'text', inputMode: 'text', autoComplete: 'name', placeholder: 'e.g. Marko Petrovski' },
+    { key: 'business_name', label: t.demoWizard.steps.step1.businessName, type: 'text', inputMode: 'text', autoComplete: 'organization', placeholder: 'e.g. Bistro Central' },
+    { key: 'email', label: t.demoWizard.steps.step1.email, type: 'email', inputMode: 'email', autoComplete: 'email', placeholder: 'name@company.com' },
+    { key: 'phone', label: t.demoWizard.steps.step1.phone, type: 'tel', inputMode: 'tel', autoComplete: 'tel', placeholder: '+389 70 123 456' },
+  ] as const
+
   const stepText = t.demoWizard.stepIndicator
     .replace('{current}', String(currentStep))
     .replace('{total}', '5')
 
   return (
-    <Card className="mx-auto max-w-2xl overflow-hidden p-6 sm:p-8 shadow-xl">
+    <Card ref={cardRef} className="mx-auto max-w-2xl scroll-mt-20 overflow-hidden p-5 shadow-xl sm:p-8">
       {/* Progress Header */}
       <div className="mb-8">
-        <div className="flex items-center justify-between text-xs font-semibold tracking-wide text-ink-muted">
+        <div className="flex items-center justify-between gap-3 text-xs font-semibold tracking-wide text-ink-muted">
           <span>{stepText}</span>
-          <span className="text-brand-600 font-bold">{Math.round((currentStep / 5) * 100)}%</span>
+          <span className="font-bold text-brand-700">{Math.round((currentStep / 5) * 100)}%</span>
         </div>
-        <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-surface-muted">
+        <div
+          role="progressbar"
+          aria-valuemin={1}
+          aria-valuemax={5}
+          aria-valuenow={currentStep}
+          aria-valuetext={stepText}
+          className="mt-2 h-2 w-full overflow-hidden rounded-full bg-surface-muted"
+        >
           <div
             className="h-full bg-gradient-to-r from-brand-600 to-amber-500 transition-all duration-300 ease-out"
             style={{ width: `${(currentStep / 5) * 100}%` }}
@@ -199,7 +235,7 @@ export function DemoRequestForm() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} noValidate>
         {/* STEP 1: Contact Information */}
         {currentStep === 1 && (
           <div className="space-y-5">
@@ -209,75 +245,40 @@ export function DemoRequestForm() {
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-ink">
-                  {t.demoWizard.steps.step1.fullName} *
-                </label>
-                <input
-                  type="text"
-                  value={formData.contact_name}
-                  onChange={(e) => updateField('contact_name', e.target.value)}
-                  placeholder="e.g. Marko Petrovski"
-                  className={cn(
-                    'mt-1.5 focus-ring w-full rounded-lg border bg-surface px-3.5 py-2.5 text-sm text-ink transition-colors',
-                    errors.contact_name ? 'border-danger' : 'border-border hover:border-border-strong',
-                  )}
-                />
-                {errors.contact_name && <p className="mt-1 text-xs text-danger">{errors.contact_name}</p>}
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-ink">
-                  {t.demoWizard.steps.step1.businessName} *
-                </label>
-                <input
-                  type="text"
-                  value={formData.business_name}
-                  onChange={(e) => updateField('business_name', e.target.value)}
-                  placeholder="e.g. Bistro Central"
-                  className={cn(
-                    'mt-1.5 focus-ring w-full rounded-lg border bg-surface px-3.5 py-2.5 text-sm text-ink transition-colors',
-                    errors.business_name ? 'border-danger' : 'border-border hover:border-border-strong',
-                  )}
-                />
-                {errors.business_name && <p className="mt-1 text-xs text-danger">{errors.business_name}</p>}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-ink">
-                  {t.demoWizard.steps.step1.email} *
-                </label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => updateField('email', e.target.value)}
-                  placeholder="name@company.com"
-                  className={cn(
-                    'mt-1.5 focus-ring w-full rounded-lg border bg-surface px-3.5 py-2.5 text-sm text-ink transition-colors',
-                    errors.email ? 'border-danger' : 'border-border hover:border-border-strong',
-                  )}
-                />
-                {errors.email && <p className="mt-1 text-xs text-danger">{errors.email}</p>}
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-ink">
-                  {t.demoWizard.steps.step1.phone} *
-                </label>
-                <input
-                  type="tel"
-                  value={formData.phone}
-                  onChange={(e) => updateField('phone', e.target.value)}
-                  placeholder="+389 70 123 456"
-                  className={cn(
-                    'mt-1.5 focus-ring w-full rounded-lg border bg-surface px-3.5 py-2.5 text-sm text-ink transition-colors',
-                    errors.phone ? 'border-danger' : 'border-border hover:border-border-strong',
-                  )}
-                />
-                {errors.phone && <p className="mt-1 text-xs text-danger">{errors.phone}</p>}
-              </div>
+              {step1Fields.map((field) => {
+                const inputId = `${uid}-${field.key}`
+                const error = errors[field.key]
+                return (
+                  <div key={field.key}>
+                    <label htmlFor={inputId} className="block text-xs font-semibold uppercase tracking-wider text-ink">
+                      {field.label} *
+                    </label>
+                    <input
+                      id={inputId}
+                      name={field.key}
+                      type={field.type}
+                      inputMode={field.inputMode}
+                      autoComplete={field.autoComplete}
+                      enterKeyHint="next"
+                      value={formData[field.key]}
+                      onChange={(e) => updateField(field.key, e.target.value)}
+                      placeholder={field.placeholder}
+                      aria-required="true"
+                      aria-invalid={error ? true : undefined}
+                      aria-describedby={error ? `${inputId}-error` : undefined}
+                      className={cn(
+                        'mt-1.5 focus-ring min-h-11 w-full rounded-lg border bg-surface px-3.5 py-2.5 text-base text-ink transition-colors',
+                        error ? 'border-danger' : 'border-border hover:border-border-strong',
+                      )}
+                    />
+                    {error && (
+                      <p id={`${inputId}-error`} role="alert" className="mt-1.5 text-xs font-medium text-danger">
+                        {error}
+                      </p>
+                    )}
+                  </div>
+                )
+              })}
             </div>
           </div>
         )}
@@ -290,7 +291,7 @@ export function DemoRequestForm() {
               <p className="mt-1 text-sm text-ink-muted">{t.demoWizard.steps.step2.description}</p>
             </div>
 
-            {errors.business_type && <p className="text-xs font-medium text-danger">{errors.business_type}</p>}
+            {errors.business_type && <p role="alert" className="text-xs font-medium text-danger">{errors.business_type}</p>}
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {[
@@ -306,6 +307,7 @@ export function DemoRequestForm() {
                     key={item.key}
                     type="button"
                     onClick={() => updateField('business_type', item.key as DemoFormData['business_type'])}
+                    aria-pressed={isSelected}
                     className={cn(
                       'focus-ring flex items-center gap-3.5 rounded-xl border p-4 text-left transition-all',
                       isSelected
@@ -321,7 +323,7 @@ export function DemoRequestForm() {
                     >
                       <Icon className="h-5 w-5" />
                     </div>
-                    <span className="font-semibold">{item.label}</span>
+                    <span className="min-w-0 font-semibold [overflow-wrap:anywhere]">{item.label}</span>
                   </button>
                 )
               })}
@@ -337,7 +339,7 @@ export function DemoRequestForm() {
               <p className="mt-1 text-sm text-ink-muted">{t.demoWizard.steps.step3.description}</p>
             </div>
 
-            {errors.interests && <p className="text-xs font-medium text-danger">{errors.interests}</p>}
+            {errors.interests && <p role="alert" className="text-xs font-medium text-danger">{errors.interests}</p>}
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {[
@@ -355,6 +357,7 @@ export function DemoRequestForm() {
                     key={item.key}
                     type="button"
                     onClick={() => toggleInterest(item.key)}
+                    aria-pressed={isChecked}
                     className={cn(
                       'focus-ring flex items-center justify-between rounded-xl border p-3.5 text-left transition-all',
                       isChecked
@@ -362,7 +365,7 @@ export function DemoRequestForm() {
                         : 'border-border bg-surface text-ink hover:border-border-strong hover:bg-surface-muted',
                     )}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex min-w-0 items-center gap-3">
                       <div
                         className={cn(
                           'flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm',
@@ -371,12 +374,12 @@ export function DemoRequestForm() {
                       >
                         <Icon className="h-4 w-4" />
                       </div>
-                      <span className="text-sm font-semibold">{item.label}</span>
+                      <span className="min-w-0 text-sm font-semibold [overflow-wrap:anywhere]">{item.label}</span>
                     </div>
 
                     <div
                       className={cn(
-                        'flex h-5 w-5 items-center justify-center rounded border transition-colors',
+                        'ml-3 flex h-5 w-5 shrink-0 items-center justify-center rounded border transition-colors',
                         isChecked ? 'border-brand-600 bg-brand-600 text-white' : 'border-border bg-surface',
                       )}
                     >
@@ -400,10 +403,12 @@ export function DemoRequestForm() {
             <div>
               <textarea
                 rows={5}
+                name="message"
+                aria-label={t.demoWizard.steps.step4.title}
                 value={formData.message}
                 onChange={(e) => updateField('message', e.target.value)}
                 placeholder={t.demoWizard.steps.step4.placeholder}
-                className="focus-ring w-full rounded-xl border border-border bg-surface p-4 text-sm text-ink transition-colors hover:border-border-strong"
+                className="focus-ring w-full rounded-xl border border-border bg-surface p-4 text-base text-ink transition-colors hover:border-border-strong"
               />
             </div>
           </div>
@@ -418,7 +423,7 @@ export function DemoRequestForm() {
             </div>
 
             {errors.preferred_contact && (
-              <p className="text-xs font-medium text-danger">{errors.preferred_contact}</p>
+              <p role="alert" className="text-xs font-medium text-danger">{errors.preferred_contact}</p>
             )}
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -434,23 +439,24 @@ export function DemoRequestForm() {
                     key={item.key}
                     type="button"
                     onClick={() => updateField('preferred_contact', item.key as DemoFormData['preferred_contact'])}
+                    aria-pressed={isSelected}
                     className={cn(
-                      'focus-ring flex flex-col items-center gap-2 rounded-xl border p-4 text-center transition-all',
+                      'focus-ring flex min-h-14 items-center gap-3 rounded-xl border p-4 text-left transition-all sm:flex-col sm:gap-2 sm:text-center',
                       isSelected
                         ? 'border-brand-600 bg-brand-50/50 text-brand-900 shadow-sm'
                         : 'border-border bg-surface text-ink hover:border-border-strong hover:bg-surface-muted',
                     )}
                   >
                     <Icon className={cn('h-5 w-5', isSelected ? 'text-brand-600' : 'text-ink-muted')} />
-                    <span className="text-xs font-semibold">{item.label}</span>
+                    <span className="text-sm font-semibold sm:text-xs">{item.label}</span>
                   </button>
                 )
               })}
             </div>
 
             {/* Summary Box */}
-            <div className="rounded-xl border border-border bg-surface-muted p-4 text-xs text-ink-muted">
-              <h4 className="font-semibold uppercase tracking-wider text-ink mb-2">
+            <div className="break-words rounded-xl border border-border bg-surface-muted p-4 text-sm text-ink-muted">
+              <h4 className="mb-2 text-xs font-semibold uppercase tracking-wider text-ink">
                 {t.demoWizard.steps.step5.summary.title}
               </h4>
               <p>
@@ -469,28 +475,28 @@ export function DemoRequestForm() {
               </p>
             </div>
 
-            {submitError && <p className="text-xs font-medium text-danger">{submitError}</p>}
+            {submitError && <p role="alert" className="text-sm font-medium text-danger">{submitError}</p>}
           </div>
         )}
 
         {/* Wizard Controls */}
-        <div className="mt-8 flex items-center justify-between border-t border-border pt-6">
+        <div className="mt-8 flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
           {currentStep > 1 ? (
-            <Button type="button" variant="outline" size="md" onClick={handleBack} disabled={isSubmitting}>
+            <Button type="button" variant="outline" size="md" onClick={handleBack} disabled={isSubmitting} className="w-full sm:w-auto">
               <ChevronLeft className="mr-1 h-4 w-4" />
               {t.demoWizard.navigation.back}
             </Button>
           ) : (
-            <div />
+            <div className="hidden sm:block" />
           )}
 
           {currentStep < 5 ? (
-            <Button type="button" size="md" onClick={handleNext}>
+            <Button key="next" type="submit" size="md" className="w-full sm:w-auto">
               {t.demoWizard.navigation.next}
               <ChevronRight className="ml-1 h-4 w-4" />
             </Button>
           ) : (
-            <Button type="submit" size="lg" disabled={isSubmitting} className="min-w-[180px]">
+            <Button key="submit" type="submit" size="lg" disabled={isSubmitting} className="w-full sm:w-auto sm:min-w-[180px]">
               {isSubmitting ? (
                 <>
                   <span className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />

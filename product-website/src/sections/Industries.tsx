@@ -18,7 +18,7 @@ export function Industries() {
       <Container>
         <div className="max-w-2xl">
           <p className="text-sm font-semibold tracking-wide text-brand-600">{t.industries.eyebrow}</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">{t.industries.headline}</h2>
+          <h2 className="mt-3 text-heading">{t.industries.headline}</h2>
           <p className="mt-4 text-lg text-ink-muted">{t.industries.supportingText}</p>
         </div>
 

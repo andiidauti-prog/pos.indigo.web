@@ -1,11 +1,8 @@
 import { useState } from 'react'
 import { cn } from '@/lib/cn'
-import pic1 from '@/assets/pic-1.jpg'
-import pic2 from '@/assets/pic-2.jpg'
-import imgMenu from '@/assets/cashier-interface.jpg'
+import imgMenu from '@/assets/pos-picture-336.jpg'
 import imgOrders from '@/assets/orders-checkout.jpg'
 import imgTables from '@/assets/tables-pos.jpg'
-import imgStats from '@/assets/stats-pos.jpg'
 
 export interface ProductShowcaseVisualProps {
   /** Localized accessible name */
@@ -13,55 +10,38 @@ export interface ProductShowcaseVisualProps {
   className?: string
 }
 
-type TabKey = 'terminal' | 'admin' | 'menu' | 'orders' | 'tables' | 'stats'
+type TabKey = 'menu' | 'orders' | 'tables'
 
+/**
+ * The switcher shows real software screens only. Every other product image is
+ * used exactly once elsewhere on the site, so none is repeated here.
+ */
 const tabs: { key: TabKey; label: string; src: string; alt: string; tag: string }[] = [
-  {
-    key: 'terminal',
-    label: 'POS Terminal',
-    src: pic1,
-    alt: 'onlinePOS touchscreen hardware terminal in live restaurant counter environment',
-    tag: 'Hardware Photo',
-  },
-  {
-    key: 'admin',
-    label: 'Printer & Admin Setup',
-    src: pic2,
-    alt: 'onlinePOS hardware setup with touchscreen monitor and compact thermal receipt printer',
-    tag: 'Hardware Photo',
-  },
   {
     key: 'menu',
     label: 'Cashier Interface',
     src: imgMenu,
-    alt: 'onlinePOS intuitive touchscreen order cashier interface',
+    alt: 'onlinePOS cashier screen with product menu, categories and current order',
     tag: 'Software Screen',
   },
   {
     key: 'orders',
     label: 'Orders & Checkout',
     src: imgOrders,
-    alt: 'onlinePOS table service order management and billing checkout screen',
+    alt: 'onlinePOS order list with the selected order ready to charge',
     tag: 'Software Screen',
   },
   {
     key: 'tables',
     label: 'Tables & Zones',
     src: imgTables,
-    alt: 'onlinePOS real-time floor plan table availability management',
-    tag: 'Software Screen',
-  },
-  {
-    key: 'stats',
-    label: 'Revenue Analytics',
-    src: imgStats,
-    alt: 'onlinePOS revenue statistics and business performance analytics dashboard',
+    alt: 'onlinePOS table overview showing availability per zone',
     tag: 'Software Screen',
   },
 ]
 
 export function ProductShowcaseVisual({ ariaLabel, className }: ProductShowcaseVisualProps) {
-  const [activeTab, setActiveTab] = useState<TabKey>('terminal')
+  const [activeTab, setActiveTab] = useState<TabKey>('menu')
 
   const currentItem = tabs.find((t) => t.key === activeTab) || tabs[0]
 
@@ -83,20 +63,25 @@ export function ProductShowcaseVisual({ ariaLabel, className }: ProductShowcaseV
             <span className="h-3 w-3 rounded-full bg-emerald-400/80" />
           </div>
           <div className="flex items-center gap-1.5 rounded-md border border-border bg-surface px-3 py-1 text-xs font-semibold text-ink">
-            <span className="h-2 w-2 rounded-full bg-brand-600 animate-pulse" />
+            <span className="h-2 w-2 rounded-full bg-brand-600 motion-safe:animate-pulse" />
             onlinePOS Showcase
           </div>
         </div>
 
-        {/* View mode switcher */}
-        <div className="flex flex-wrap items-center gap-1.5 rounded-lg border border-border bg-surface p-1">
+        {/* View mode switcher: equal-width 44px segments on phones, inline pills from sm. */}
+        <div
+          role="group"
+          aria-label="Product screens"
+          className="grid grid-cols-3 gap-1 rounded-lg border border-border bg-surface p-1 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5"
+        >
           {tabs.map((tab) => (
             <button
               key={tab.key}
               type="button"
               onClick={() => setActiveTab(tab.key)}
+              aria-pressed={activeTab === tab.key}
               className={cn(
-                'rounded-md px-3 py-1.5 text-xs font-medium transition-all focus-ring',
+                'focus-ring min-h-11 rounded-md px-2 py-1 text-center text-xs font-medium leading-tight transition-all sm:px-3 md:pointer-fine:min-h-9',
                 activeTab === tab.key
                   ? 'bg-brand-600 text-white shadow-sm'
                   : 'text-ink-muted hover:bg-surface-muted hover:text-ink',
@@ -109,22 +94,22 @@ export function ProductShowcaseVisual({ ariaLabel, className }: ProductShowcaseV
       </div>
 
       {/* Main Image Display Area */}
-      <div className="group relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden bg-stone-950">
+      {/* Native screenshot ratio (~1.95:1) so no part of the UI is cropped */}
+      <div className="group relative aspect-[1920/987] overflow-hidden bg-surface-muted">
         <img
           key={currentItem.key}
           src={currentItem.src}
           alt={currentItem.alt}
-          className="h-full w-full object-cover object-center transition-all duration-500 group-hover:scale-[1.008]"
-          loading="eager"
+          width={1920}
+          height={987}
+          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.008]"
+          loading="lazy"
         />
 
-        {/* Floating details overlay tag */}
-        <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2 rounded-lg border border-white/10 bg-stone-900/80 px-3 py-1.5 text-xs font-medium text-stone-200 backdrop-blur-md">
-          <span className="h-2 w-2 rounded-full bg-amber-400" />
-          <span>{currentItem.alt}</span>
-          <span className="ml-2 rounded bg-amber-500/20 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-amber-300">
-            {currentItem.tag}
-          </span>
+        {/* Floating details overlay tag (hidden on phones so it never covers the UI) */}
+        <div className="absolute bottom-3 left-3 z-10 hidden items-center gap-2 rounded-lg border border-white/10 bg-stone-900/80 px-2.5 py-1 text-xs font-medium uppercase tracking-wider text-amber-300 backdrop-blur-md sm:flex">
+          <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+          {currentItem.tag}
         </div>
       </div>
     </div>

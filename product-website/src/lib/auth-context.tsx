@@ -1,82 +1,66 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
-import type { User } from '@supabase/supabase-js'
+import type { Session, User } from '@supabase/supabase-js'
 import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 
-const MOCK_ADMIN_SESSION_KEY = 'onlinepos_mock_admin_session'
-
 interface AuthContextType {
-  user: User | { email: string; id: string } | null
+  user: User | null
   loading: boolean
   signIn: (email: string, pass: string) => Promise<{ error: Error | null }>
-  signInDemo: (email?: string) => void
   signOut: () => Promise<void>
-  isLocalDemoSession: boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-function getInitialLocalMockUser(): { email: string; id: string } | null {
-  const savedMock = localStorage.getItem(MOCK_ADMIN_SESSION_KEY)
-  if (savedMock) {
-    try {
-      return JSON.parse(savedMock)
-    } catch {
-      localStorage.removeItem(MOCK_ADMIN_SESSION_KEY)
-    }
-  }
-  return null
+/**
+ * A session read from local storage is only a claim. Ask Supabase Auth to
+ * validate the access token so a stale or tampered session never counts as signed in.
+ */
+async function verifySession(session: Session | null): Promise<User | null> {
+  if (!session) return null
+  const { data, error } = await supabase.auth.getUser(session.access_token)
+  return error ? null : data.user
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | { email: string; id: string } | null>(getInitialLocalMockUser)
+  const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState<boolean>(isSupabaseConfigured)
-  const [isLocalDemoSession, setIsLocalDemoSession] = useState<boolean>(() => Boolean(getInitialLocalMockUser()))
 
   useEffect(() => {
     if (!isSupabaseConfigured) {
       return
     }
 
-    // Check active Supabase session
+    let active = true
+
+    // Restore and verify any existing Supabase session.
     supabase.auth
       .getSession()
-      .then(({ data: { session } }) => {
-        if (session?.user) {
-          setUser(session.user)
-          setIsLocalDemoSession(false)
-        }
-        setLoading(false)
-      })
-      .catch(() => {
+      .then(({ data: { session } }) => verifySession(session))
+      .catch(() => null)
+      .then((verifiedUser) => {
+        if (!active) return
+        setUser(verifiedUser)
         setLoading(false)
       })
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session?.user) {
-        setUser(session.user)
-        setIsLocalDemoSession(false)
-      }
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      // The initial session is verified above.
+      if (event === 'INITIAL_SESSION') return
+      // Sign-out (this or another tab) or an expired/unrefreshable session ends access.
+      setUser(session?.user ?? null)
       setLoading(false)
     })
 
-    return () => subscription.unsubscribe()
+    return () => {
+      active = false
+      subscription.unsubscribe()
+    }
   }, [])
-
-  function signInDemo(demoEmail = 'admin@onlinepos.com') {
-    const mockUser = { email: demoEmail, id: 'admin-local-session-id' }
-    localStorage.setItem(MOCK_ADMIN_SESSION_KEY, JSON.stringify(mockUser))
-    setUser(mockUser)
-    setIsLocalDemoSession(true)
-  }
 
   async function signIn(email: string, pass: string): Promise<{ error: Error | null }> {
     if (!isSupabaseConfigured) {
-      if (import.meta.env.DEV && email.trim() && pass.length >= 6) {
-        signInDemo(email)
-        return { error: null }
-      }
       return {
         error: new Error(
           'Admin sign-in is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY for this environment.',
@@ -94,21 +78,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return { error: new Error(error.message) }
       }
 
-      if (data.session?.user) {
-        setUser(data.session.user)
-        setIsLocalDemoSession(false)
+      if (!data.session?.user) {
+        return { error: new Error('Sign-in did not return a session. Please try again.') }
       }
 
+      setUser(data.session.user)
       return { error: null }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err)
       console.warn('Supabase Auth fetch failed:', msg)
       return {
-        error: new Error(
-          'Could not connect to Supabase Auth (' +
-            msg +
-            '). If you have not created an admin user in Supabase yet, click "Sign In with Demo Mode" below.',
-        ),
+        error: new Error('Could not connect to the authentication service (' + msg + '). Please try again.'),
       }
     }
   }
@@ -118,19 +98,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         await supabase.auth.signOut()
       } catch {
-        // Ignore signout fetch errors
+        // Ignore signout fetch errors; local state is cleared below either way.
       }
     }
-    localStorage.removeItem(MOCK_ADMIN_SESSION_KEY)
     setUser(null)
-    setIsLocalDemoSession(false)
   }
 
-  return (
-    <AuthContext.Provider value={{ user, loading, signIn, signInDemo, signOut, isLocalDemoSession }}>
-      {children}
-    </AuthContext.Provider>
-  )
+  return <AuthContext.Provider value={{ user, loading, signIn, signOut }}>{children}</AuthContext.Provider>
 }
 
 // eslint-disable-next-line react-refresh/only-export-components

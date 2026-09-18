@@ -21,7 +21,7 @@ export function BusinessManagement() {
   return (
     <section className="border-t border-border bg-surface py-16 sm:py-20 lg:py-24">
       <Container>
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -34,7 +34,7 @@ export function BusinessManagement() {
               <p className="text-sm font-semibold tracking-wide text-brand-600">
                 {t.businessManagement.eyebrow}
               </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl">{t.businessManagement.headline}</h2>
+              <h2 className="mt-3 text-heading">{t.businessManagement.headline}</h2>
               <p className="mt-4 text-lg text-ink-muted">{t.businessManagement.supportingText}</p>
             </div>
 
