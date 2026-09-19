@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
+import { FileText, LayoutDashboard } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { ManagementVisual } from '@/components/ui/ManagementVisual'
 import { managementAreas } from '@/data/businessManagement'
@@ -53,6 +54,23 @@ export function BusinessManagement() {
                   </div>
                 )
               })}
+            </div>
+
+            <div className="rounded-2xl border border-border bg-surface-muted p-5 sm:p-6">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+                  <LayoutDashboard className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <p className="text-base font-semibold text-ink sm:text-lg">
+                  {t.businessManagement.highlight.primary}
+                </p>
+              </div>
+              <div className="mt-4 flex items-start gap-3 border-t border-border pt-4">
+                <FileText className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" aria-hidden="true" />
+                <p className="text-sm leading-relaxed text-ink-muted">
+                  {t.businessManagement.highlight.secondary}
+                </p>
+              </div>
             </div>
           </motion.div>
 

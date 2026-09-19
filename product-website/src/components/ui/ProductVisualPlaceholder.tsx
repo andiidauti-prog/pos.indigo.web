@@ -8,7 +8,7 @@ export interface ProductVisualPlaceholderProps {
 }
 
 /**
- * Hero visual featuring the real onlinePOS counter terminal photo (pic-1).
+ * Hero visual featuring the real OninePOS counter terminal photo (pic-1).
  * Each product image is used once across the site, so depth comes from a
  * layered backdrop panel rather than a second photo.
  *
@@ -39,7 +39,7 @@ export function ProductVisualPlaceholder({ className }: ProductVisualPlaceholder
           <div className="flex items-center justify-between border-b border-stone-800/40 bg-stone-900/90 px-4 py-2 text-xs text-stone-300 backdrop-blur">
             <div className="flex min-w-0 items-center gap-2">
               <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
-              <span className="truncate font-medium">onlinePOS Hardware Terminal</span>
+              <span className="truncate font-medium">OninePOS Hardware Terminal</span>
             </div>
             <span className="ml-3 hidden shrink-0 rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300 sm:inline-block">
               Live Counter Setup
@@ -50,7 +50,7 @@ export function ProductVisualPlaceholder({ className }: ProductVisualPlaceholder
           <div className="relative aspect-[16/9] overflow-hidden bg-stone-900">
             <img
               src={pic1}
-              alt="onlinePOS touchscreen ordering terminal on a restaurant terrace counter"
+              alt="OninePOS touchscreen ordering terminal on a restaurant terrace counter"
               width={1671}
               height={941}
               className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.01]"
@@ -79,7 +79,7 @@ export function ProductVisualPlaceholder({ className }: ProductVisualPlaceholder
         />
         <motion.img
           src={fiscalPrinter}
-          alt="onlinePOS fiscal thermal receipt printer"
+          alt="OninePOS fiscal thermal receipt printer"
           width={718}
           height={620}
           decoding="async"

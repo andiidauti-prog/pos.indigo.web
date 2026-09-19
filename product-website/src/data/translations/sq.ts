@@ -17,13 +17,13 @@ export const sq: Translations = {
     productGroup: 'Produkti',
     companyGroup: 'Kompania',
     languagesLabel: 'Gjuhët',
-    copyright: '© {year} onlinePOS. Të gjitha të drejtat e rezervuara.',
+    copyright: '© {year} OninePOS. Të gjitha të drejtat e rezervuara.',
   },
   languageSelector: {
     selectLanguage: 'Zgjidhni gjuhën',
   },
   hero: {
-    eyebrow: 'onlinePOS',
+    eyebrow: 'OninePOS',
     headlineLines: ['Biznesi juaj.', 'Nën kontrollin tuaj.'],
     supportingText: 'Sistem modern POS për shitje, inventar, fiskalizim dhe menaxhim të biznesit tuaj.',
   },
@@ -31,7 +31,7 @@ export const sq: Translations = {
     eyebrow: 'FUQI DHE KONTROLL',
     headline: 'Gjithçka që ju nevojitet. Në një vend.',
     supportingText:
-      'onlinePOS bashkon shitjen, inventarin, fiskalizimin dhe menaxhimin e biznesit tuaj në një zgjidhje të vetme.',
+      'OninePOS bashkon shitjen, inventarin, fiskalizimin dhe menaxhimin e biznesit tuaj në një zgjidhje të vetme.',
     items: {
       sales: {
         title: 'Shitja',
@@ -43,7 +43,7 @@ export const sq: Translations = {
       },
       fiscalization: {
         title: 'Fiskalizimi',
-        description: 'Fiskalizoni shitjet tuaja direkt përmes onlinePOS.',
+        description: 'Fiskalizoni shitjet tuaja direkt përmes OninePOS.',
       },
       reports: {
         title: 'Statistika dhe raporte',
@@ -63,25 +63,25 @@ export const sq: Translations = {
     eyebrow: 'PËR BIZNESE TË NDRYSHME',
     headline: 'Një POS. Biznese të ndryshme.',
     supportingText:
-      'Pavarësisht llojit të biznesit tuaj, onlinePOS ju ndihmon të menaxhoni proceset e përditshme të shitjes dhe operacionale nga një vend.',
+      'Pavarësisht llojit të biznesit tuaj, OninePOS ju ndihmon të menaxhoni proceset e përditshme të shitjes dhe operacionale nga një vend.',
     items: {
       restaurants: {
         title: 'Restorante',
-        description: 'onlinePOS u ndihmon restoranteve të organizojnë punën dhe shitjen e përditshme.',
+        description: 'OninePOS u ndihmon restoranteve të organizojnë punën dhe shitjen e përditshme.',
       },
       stores: {
         title: 'Dyqane',
-        description: 'Dyqanet mund ta përdorin onlinePOS për punë dhe shitje të përditshme më të thjeshtë.',
+        description: 'Dyqanet mund ta përdorin OninePOS për punë dhe shitje të përditshme më të thjeshtë.',
       },
       warehouses: {
         title: 'Depo',
         description:
-          'onlinePOS është i përshtatshëm edhe për bizneset ku ndjekja dhe menaxhimi i inventarit janë të rëndësisë kyçe.',
+          'OninePOS është i përshtatshëm edhe për bizneset ku ndjekja dhe menaxhimi i inventarit janë të rëndësisë kyçe.',
       },
       other: {
         title: 'Biznese të tjera',
         description:
-          'onlinePOS mund të përshtatet edhe për lloje të tjera biznesesh, në varësi të nevojave të tyre operacionale.',
+          'OninePOS mund të përshtatet edhe për lloje të tjera biznesesh, në varësi të nevojave të tyre operacionale.',
       },
     },
   },
@@ -89,7 +89,7 @@ export const sq: Translations = {
     eyebrow: 'PASQYRA E PRODUKTIT',
     headline: 'Biznesi juaj, në një vend.',
     supportingText:
-      'Nga shitja dhe inventari deri te statistikat dhe menaxhimi — onlinePOS ju mundëson të ndiqni aktivitetet kyçe të biznesit tuaj nga një vend.',
+      'Nga shitja dhe inventari deri te statistikat dhe menaxhimi — OninePOS ju mundëson të ndiqni aktivitetet kyçe të biznesit tuaj nga një vend.',
     highlights: [
       { title: 'Shitja', description: 'Menaxhoni shitjen e përditshme përmes një ndërfaqeje të thjeshtë.' },
       { title: 'Inventari', description: 'Ndiqni inventarin e biznesit tuaj nga një vend.' },
@@ -109,12 +109,16 @@ export const sq: Translations = {
       },
       remoteManagement: {
         title: 'Menaxhim në distancë',
-        description: 'Menaxhoni biznesin tuaj nga distanca, përmes onlinePOS.',
+        description: 'Menaxhoni biznesin tuaj nga distanca, përmes OninePOS.',
       },
       inventorySales: {
         title: 'Inventari dhe shitja',
         description: 'Shitja dhe inventari menaxhohen së bashku, nga një vend.',
       },
+    },
+    highlight: {
+      primary: 'Shitja • Inventari • Stafi • Statistika',
+      secondary: 'Gjeneroni raporte PDF për një periudhë të plotë ose për data specifike të zgjedhura.',
     },
     visualLabel: 'Pamje vizuale e menaxhimit të biznesit (së shpejti)',
   },
@@ -122,14 +126,14 @@ export const sq: Translations = {
     eyebrow: 'FISKALIZIMI',
     headline: 'Fiskalizimi, pjesë e punës suaj të përditshme.',
     supportingText:
-      'onlinePOS e përfshin fiskalizimin si pjesë të procesit të shitjes, me qëllim që puna juaj të jetë më e thjeshtë dhe më e organizuar.',
-    supportingStatement: 'Fiskalizimi është i integruar direkt në rrjedhën e shitjes në onlinePOS.',
+      'OninePOS e përfshin fiskalizimin si pjesë të procesit të shitjes, me qëllim që puna juaj të jetë më e thjeshtë dhe më e organizuar.',
+    supportingStatement: 'Fiskalizimi është i integruar direkt në rrjedhën e shitjes në OninePOS.',
     visualLabel: 'Pamje vizuale e fiskalizimit (së shpejti)',
   },
   payments: {
     eyebrow: 'PAGESAT',
     headline: 'Më shumë mënyra pagese. Një vend për shitje.',
-    supportingText: 'onlinePOS mundëson punën me mënyra të ndryshme pagese, duke përfshirë para në dorë dhe kartela.',
+    supportingText: 'OninePOS mundëson punën me mënyra të ndryshme pagese, duke përfshirë para në dorë dhe kartela.',
     methods: {
       cash: {
         title: 'Para në dorë',
@@ -137,7 +141,7 @@ export const sq: Translations = {
       },
       card: {
         title: 'Kartelë',
-        description: 'Pranoni pagesa me kartelë direkt përmes onlinePOS.',
+        description: 'Pranoni pagesa me kartelë direkt përmes OninePOS.',
       },
       other: {
         title: 'Mënyra të tjera',
@@ -148,7 +152,7 @@ export const sq: Translations = {
   },
   contact: {
     eyebrow: 'KËRKONI DEMO',
-    headline: 'Zbuloni si onlinePOS mund të ndihmojë biznesin tuaj.',
+    headline: 'Zbuloni si OninePOS mund të ndihmojë biznesin tuaj.',
     supportingText: 'Plotësoni këtë kërkesë të shpejtë hap pas hapi dhe ekipi ynë do t’ju kontaktojë.',
   },
   demoWizard: {
@@ -208,7 +212,7 @@ export const sq: Translations = {
     },
     confirmation: {
       title: 'Kërkesa u pranua',
-      message: 'Faleminderit për interesimin tuaj për onlinePOS. Do t’ju kontaktojmë së shpejti.',
+      message: 'Faleminderit për interesimin tuaj për OninePOS. Do t’ju kontaktojmë së shpejti.',
       submitAnother: 'Dërgoni një kërkesë tjetër',
     },
     navigation: {
@@ -230,7 +234,7 @@ export const sq: Translations = {
   },
   finalCta: {
     eyebrow: 'KËRKONI DEMO',
-    headline: 'Njihuni me onlinePOS.',
+    headline: 'Njihuni me OninePOS.',
     supportingText: 'Mësoni më shumë rreth zgjidhjes dhe bisedoni me ekipin tonë.',
     primaryCta: 'Kërkoni demo',
   },

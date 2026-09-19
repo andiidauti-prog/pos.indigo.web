@@ -24,7 +24,7 @@ export function Footer() {
               to="/"
               className="focus-ring flex w-fit items-center rounded-xl border border-stone-800 bg-stone-950 px-3 py-2 shadow-sm transition-transform hover:scale-[1.02]"
             >
-              <img src={logo} alt="onlinePOS logo" className="h-7 w-auto object-contain" />
+              <img src={logo} alt="OninePOS logo" className="h-7 w-auto object-contain" />
             </Link>
             <Button to={CONTACT_ROUTE} variant="outline" size="sm" className="w-fit">
               {t.nav.requestDemo}

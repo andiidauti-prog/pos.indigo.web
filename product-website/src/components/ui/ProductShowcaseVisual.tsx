@@ -21,21 +21,21 @@ const tabs: { key: TabKey; label: string; src: string; alt: string; tag: string 
     key: 'menu',
     label: 'Cashier Interface',
     src: imgMenu,
-    alt: 'onlinePOS cashier screen with product menu, categories and current order',
+    alt: 'OninePOS cashier screen with product menu, categories and current order',
     tag: 'Software Screen',
   },
   {
     key: 'orders',
     label: 'Orders & Checkout',
     src: imgOrders,
-    alt: 'onlinePOS order list with the selected order ready to charge',
+    alt: 'OninePOS order list with the selected order ready to charge',
     tag: 'Software Screen',
   },
   {
     key: 'tables',
     label: 'Tables & Zones',
     src: imgTables,
-    alt: 'onlinePOS table overview showing availability per zone',
+    alt: 'OninePOS table overview showing availability per zone',
     tag: 'Software Screen',
   },
 ]
@@ -64,7 +64,7 @@ export function ProductShowcaseVisual({ ariaLabel, className }: ProductShowcaseV
           </div>
           <div className="flex items-center gap-1.5 rounded-md border border-border bg-surface px-3 py-1 text-xs font-semibold text-ink">
             <span className="h-2 w-2 rounded-full bg-brand-600 motion-safe:animate-pulse" />
-            onlinePOS Showcase
+            OninePOS Showcase
           </div>
         </div>
 

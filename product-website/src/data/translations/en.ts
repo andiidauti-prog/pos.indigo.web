@@ -17,13 +17,13 @@ export const en: Translations = {
     productGroup: 'Product',
     companyGroup: 'Company',
     languagesLabel: 'Languages',
-    copyright: '© {year} onlinePOS. All rights reserved.',
+    copyright: '© {year} OninePOS. All rights reserved.',
   },
   languageSelector: {
     selectLanguage: 'Select language',
   },
   hero: {
-    eyebrow: 'onlinePOS',
+    eyebrow: 'OninePOS',
     headlineLines: ['Your business.', 'Under your control.'],
     supportingText: 'A modern POS system for sales, inventory, fiscalization, and managing your business.',
   },
@@ -31,7 +31,7 @@ export const en: Translations = {
     eyebrow: 'POWER AND CONTROL',
     headline: 'Everything you need. In one place.',
     supportingText:
-      'onlinePOS brings together sales, inventory, fiscalization, and management of your business in one solution.',
+      'OninePOS brings together sales, inventory, fiscalization, and management of your business in one solution.',
     items: {
       sales: {
         title: 'Sales',
@@ -43,7 +43,7 @@ export const en: Translations = {
       },
       fiscalization: {
         title: 'Fiscalization',
-        description: 'Fiscalize your sales directly through onlinePOS.',
+        description: 'Fiscalize your sales directly through OninePOS.',
       },
       reports: {
         title: 'Statistics and reports',
@@ -63,23 +63,23 @@ export const en: Translations = {
     eyebrow: 'FOR DIFFERENT BUSINESSES',
     headline: 'One POS. Different businesses.',
     supportingText:
-      'Regardless of your type of business, onlinePOS helps you manage your everyday sales and operational processes from one place.',
+      'Regardless of your type of business, OninePOS helps you manage your everyday sales and operational processes from one place.',
     items: {
       restaurants: {
         title: 'Restaurants',
-        description: "onlinePOS helps restaurants organize their everyday operations and sales.",
+        description: "OninePOS helps restaurants organize their everyday operations and sales.",
       },
       stores: {
         title: 'Stores',
-        description: 'Stores can use onlinePOS for simpler everyday operations and sales.',
+        description: 'Stores can use OninePOS for simpler everyday operations and sales.',
       },
       warehouses: {
         title: 'Warehouses',
-        description: 'onlinePOS is also suited for businesses where tracking and managing inventory is key.',
+        description: 'OninePOS is also suited for businesses where tracking and managing inventory is key.',
       },
       other: {
         title: 'Other businesses',
-        description: 'onlinePOS can also be adapted to other types of businesses, depending on their operational needs.',
+        description: 'OninePOS can also be adapted to other types of businesses, depending on their operational needs.',
       },
     },
   },
@@ -87,7 +87,7 @@ export const en: Translations = {
     eyebrow: 'PRODUCT OVERVIEW',
     headline: 'Your business, in one place.',
     supportingText:
-      "From sales and inventory to statistics and management — onlinePOS lets you follow your business's key activities from one place.",
+      "From sales and inventory to statistics and management — OninePOS lets you follow your business's key activities from one place.",
     highlights: [
       { title: 'Sales', description: 'Manage everyday sales through a simple interface.' },
       { title: 'Inventory', description: "Track your business's inventory from one place." },
@@ -107,12 +107,16 @@ export const en: Translations = {
       },
       remoteManagement: {
         title: 'Remote management',
-        description: 'Manage your business remotely, through onlinePOS.',
+        description: 'Manage your business remotely, through OninePOS.',
       },
       inventorySales: {
         title: 'Inventory and sales',
         description: 'Sales and inventory are managed together, from one place.',
       },
+    },
+    highlight: {
+      primary: 'Sales • Stock • Staff • Statistics',
+      secondary: 'Generate PDF reports for a full period or for specific selected dates.',
     },
     visualLabel: 'Visual preview of business management (coming soon)',
   },
@@ -120,14 +124,14 @@ export const en: Translations = {
     eyebrow: 'FISCALIZATION',
     headline: 'Fiscalization, part of your everyday operations.',
     supportingText:
-      'onlinePOS includes fiscalization as part of the sales process, to make your operations simpler and more organized.',
-    supportingStatement: 'Fiscalization is integrated directly into the sales flow in onlinePOS.',
+      'OninePOS includes fiscalization as part of the sales process, to make your operations simpler and more organized.',
+    supportingStatement: 'Fiscalization is integrated directly into the sales flow in OninePOS.',
     visualLabel: 'Visual preview of fiscalization (coming soon)',
   },
   payments: {
     eyebrow: 'PAYMENTS',
     headline: 'More ways to pay. One place to sell.',
-    supportingText: 'onlinePOS supports working with different payment methods, including cash and cards.',
+    supportingText: 'OninePOS supports working with different payment methods, including cash and cards.',
     methods: {
       cash: {
         title: 'Cash',
@@ -135,7 +139,7 @@ export const en: Translations = {
       },
       card: {
         title: 'Card',
-        description: 'Accept card payments directly through onlinePOS.',
+        description: 'Accept card payments directly through OninePOS.',
       },
       other: {
         title: 'Other methods',
@@ -146,7 +150,7 @@ export const en: Translations = {
   },
   contact: {
     eyebrow: 'REQUEST A DEMO',
-    headline: 'Find out how onlinePOS can power your business.',
+    headline: 'Find out how OninePOS can power your business.',
     supportingText: 'Complete this quick step-by-step request and our team will get in touch.',
   },
   demoWizard: {
@@ -206,7 +210,7 @@ export const en: Translations = {
     },
     confirmation: {
       title: 'Request received',
-      message: "Thank you for your interest in onlinePOS. We'll get back to you shortly.",
+      message: "Thank you for your interest in OninePOS. We'll get back to you shortly.",
       submitAnother: 'Submit another request',
     },
     navigation: {
@@ -228,7 +232,7 @@ export const en: Translations = {
   },
   finalCta: {
     eyebrow: 'REQUEST A DEMO',
-    headline: 'Meet onlinePOS.',
+    headline: 'Meet OninePOS.',
     supportingText: 'Learn more about the solution and talk to our team.',
     primaryCta: 'Request a demo',
   },

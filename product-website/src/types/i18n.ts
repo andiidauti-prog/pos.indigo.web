@@ -78,6 +78,11 @@ export interface ProductShowcaseTranslations extends SectionIntro {
 
 export interface BusinessManagementTranslations extends SectionIntro {
   areas: Record<ManagementAreaId, TextItem>
+  /** Compact feature highlight: primary capability line + supporting PDF-reporting line. */
+  highlight: {
+    primary: string
+    secondary: string
+  }
   /** Accessible name for the section's decorative product-preview illustration. */
   visualLabel: string
 }

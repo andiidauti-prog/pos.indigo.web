@@ -40,7 +40,7 @@ export function AdminLoginPage() {
       <div className="w-full max-w-md space-y-8">
         <div className="flex flex-col items-center text-center">
           <div className="flex items-center rounded-2xl border border-stone-800 bg-stone-900 p-3 shadow-lg">
-            <img src={logo} alt="onlinePOS logo" className="h-10 w-auto object-contain" />
+            <img src={logo} alt="OninePOS logo" className="h-10 w-auto object-contain" />
           </div>
           <h1 className="mt-6 text-2xl font-bold tracking-tight text-white sm:text-3xl">Admin Console</h1>
           <p className="mt-2 text-sm text-stone-400">Sign in to manage demo requests and your sales pipeline</p>

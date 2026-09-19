@@ -252,7 +252,7 @@ export function AdminDashboardPage() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
           <div className="flex min-w-0 items-center gap-4">
             <div className="flex items-center gap-2 rounded-xl border border-stone-800 bg-stone-950 px-3 py-1.5">
-              <img src={logo} alt="onlinePOS logo" className="h-6 w-auto object-contain" />
+              <img src={logo} alt="OninePOS logo" className="h-6 w-auto object-contain" />
               <span className="ml-1 rounded bg-amber-500/20 px-1.5 py-0.5 text-xs font-bold uppercase tracking-wider text-amber-300">
                 Admin
               </span>

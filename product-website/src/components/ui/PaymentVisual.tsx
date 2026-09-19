@@ -8,7 +8,7 @@ export interface PaymentVisualProps {
 }
 
 /**
- * Real onlinePOS counter photo with the orders screen, receipt printer and
+ * Real OninePOS counter photo with the orders screen, receipt printer and
  * card reader in frame. Cropped to 4:3 around the screen and payment hardware;
  * shown as a photo card (no window chrome) to differ from the screenshot frames.
  */
@@ -25,7 +25,7 @@ export function PaymentVisual({ ariaLabel, className }: PaymentVisualProps) {
       <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-stone-900 shadow-xl ring-1 ring-stone-900/10">
         <img
           src={imgPayments}
-          alt="onlinePOS orders screen beside a receipt printer and card reader at the counter"
+          alt="OninePOS orders screen beside a receipt printer and card reader at the counter"
           width={1432}
           height={736}
           className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"

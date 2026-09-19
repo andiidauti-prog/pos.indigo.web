@@ -8,7 +8,7 @@ export interface ManagementVisualProps {
 }
 
 /**
- * Display real onlinePOS Statistics and Analytics dashboard screenshot
+ * Display real OninePOS Statistics and Analytics dashboard screenshot
  * in the Business Management section.
  */
 export function ManagementVisual({ ariaLabel, className }: ManagementVisualProps) {
@@ -28,7 +28,7 @@ export function ManagementVisual({ ariaLabel, className }: ManagementVisualProps
           </div>
           <div className="flex min-w-0 items-center gap-1.5 rounded-md bg-surface px-2.5 py-1 text-xs font-medium text-ink-muted sm:ml-2">
             <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-600" />
-            <span className="truncate">onlinePOS Management & Statistics</span>
+            <span className="truncate">OninePOS Management & Statistics</span>
           </div>
         </div>
         <span className="hidden shrink-0 rounded bg-brand-50 px-2 py-0.5 text-xs font-semibold text-brand-700 min-[400px]:inline-block">
@@ -40,7 +40,7 @@ export function ManagementVisual({ ariaLabel, className }: ManagementVisualProps
       <div className="relative aspect-[1750/899] overflow-hidden bg-surface-muted">
         <img
           src={imgStats}
-          alt="onlinePOS statistics screen with daily revenue, orders and 15-day summary"
+          alt="OninePOS statistics screen with daily revenue, orders and 15-day summary"
           width={1750}
           height={899}
           className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"

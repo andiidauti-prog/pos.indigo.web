@@ -28,7 +28,7 @@ export function FiscalizationVisual({ ariaLabel, className }: FiscalizationVisua
           </div>
           <div className="flex min-w-0 items-center gap-1.5 rounded-md bg-surface px-2.5 py-1 text-xs font-medium text-ink-muted sm:ml-2">
             <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600" />
-            <span className="truncate">onlinePOS Fiscalization & Thermal Printer</span>
+            <span className="truncate">OninePOS Fiscalization & Thermal Printer</span>
           </div>
         </div>
         <div className="hidden shrink-0 items-center gap-1 text-xs font-semibold text-emerald-700 min-[400px]:flex">
@@ -42,7 +42,7 @@ export function FiscalizationVisual({ ariaLabel, className }: FiscalizationVisua
       <div className="relative aspect-[16/10] overflow-hidden bg-stone-900">
         <img
           src={imgFiscal}
-          alt="onlinePOS thermal receipt printer, printed receipts and card reader on the counter"
+          alt="OninePOS thermal receipt printer, printed receipts and card reader on the counter"
           width={1433}
           height={736}
           className="h-full w-full origin-bottom-right scale-[1.7] object-cover object-right-bottom transition-transform duration-500 group-hover:scale-[1.75]"
