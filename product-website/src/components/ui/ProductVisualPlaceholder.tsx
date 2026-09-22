@@ -38,7 +38,12 @@ export function ProductVisualPlaceholder({ className }: ProductVisualPlaceholder
         <div className="group relative overflow-hidden rounded-xl border border-stone-800/20 bg-stone-950 shadow-card">
           <div className="flex items-center justify-between border-b border-stone-800/40 bg-stone-900/90 px-4 py-2 text-xs text-stone-300 backdrop-blur">
             <div className="flex min-w-0 items-center gap-2">
-              <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+              <span className="relative flex h-2 w-2 shrink-0">
+                {!shouldReduceMotion && (
+                  <span className="absolute inset-0 animate-ping rounded-full bg-emerald-500 opacity-75" />
+                )}
+                <span className="relative h-2 w-2 rounded-full bg-emerald-500" />
+              </span>
               <span className="truncate font-medium">OninePOS Hardware Terminal</span>
             </div>
             <span className="ml-3 hidden shrink-0 rounded bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300 sm:inline-block">

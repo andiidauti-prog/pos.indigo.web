@@ -3,6 +3,7 @@ import { cn } from '@/lib/cn'
 import restaurantImg from '@/assets/pos-picture-334.jpg'
 import storeImg from '@/assets/pic-2.jpg'
 import warehouseImg from '@/assets/warehouse-pos.jpg'
+import otherBusinessImg from '@/assets/other-buisness.png'
 
 export interface IndustryCardProps {
   id?: string
@@ -14,13 +15,15 @@ export interface IndustryCardProps {
 
 /**
  * Editorial industry card. Each real product photo is used once site-wide:
- * restaurants (pos-picture-334), stores (pic-2), warehouses (warehouse-pos).
- * The remaining card uses a decorative composition instead of a repeated photo.
+ * restaurants (pos-picture-334), stores (pic-2), warehouses (warehouse-pos),
+ * other businesses (other-buisness). Any future/unmatched id falls back to a
+ * decorative composition instead of a repeated photo.
  */
 export function IndustryCard({ id, icon: Icon, title, description, className }: IndustryCardProps) {
   const isRestaurant = id === 'restaurants'
   const isStore = id === 'stores'
   const isWarehouse = id === 'warehouses'
+  const isOther = id === 'other'
 
   return (
     <div
@@ -55,6 +58,16 @@ export function IndustryCard({ id, icon: Icon, title, description, className }: 
           <>
             <img
               src={warehouseImg}
+              alt={title}
+              className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent" />
+          </>
+        ) : isOther ? (
+          <>
+            <img
+              src={otherBusinessImg}
               alt={title}
               className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
