@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import type { Session, User } from '@supabase/supabase-js'
 import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 
@@ -59,7 +59,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  async function signIn(email: string, pass: string): Promise<{ error: Error | null }> {
+  const signIn = useCallback(async (email: string, pass: string): Promise<{ error: Error | null }> => {
     if (!isSupabaseConfigured) {
       return {
         error: new Error(
@@ -91,9 +91,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         error: new Error('Could not connect to the authentication service (' + msg + '). Please try again.'),
       }
     }
-  }
+  }, [])
 
-  async function signOut() {
+  const signOut = useCallback(async () => {
     if (isSupabaseConfigured) {
       try {
         await supabase.auth.signOut()
@@ -102,9 +102,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     }
     setUser(null)
-  }
+  }, [])
 
-  return <AuthContext.Provider value={{ user, loading, signIn, signOut }}>{children}</AuthContext.Provider>
+  // Keep the provider value's identity stable across renders that don't
+  // actually change auth state, so useAuth() consumers don't re-render for
+  // no reason.
+  const value = useMemo(() => ({ user, loading, signIn, signOut }), [user, loading, signIn, signOut])
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
 // eslint-disable-next-line react-refresh/only-export-components

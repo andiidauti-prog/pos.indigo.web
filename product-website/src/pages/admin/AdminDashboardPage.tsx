@@ -44,6 +44,29 @@ const INTEREST_LABELS: Record<string, string> = {
   other: 'Other Capabilities',
 }
 
+const STATUS_ORDER: StatusType[] = ['new', 'contacted', 'demo_scheduled', 'converted', 'closed']
+
+/** Shared read path for both the initial load and the manual "Refresh" action. */
+async function loadLeadsFromSource(): Promise<LeadRecord[]> {
+  if (isSupabaseConfigured) {
+    const { data, error } = await supabase.from('leads').select('*').order('created_at', { ascending: false })
+    if (error) throw error
+    return data || []
+  }
+  // Fallback local storage repository
+  const raw = localStorage.getItem('onlinepos_local_leads')
+  return raw ? JSON.parse(raw) : []
+}
+
+const STATUS_FILTER_TABS: { id: string; label: string }[] = [
+  { id: 'all', label: 'All' },
+  { id: 'new', label: 'New' },
+  { id: 'contacted', label: 'Contacted' },
+  { id: 'demo_scheduled', label: 'Scheduled' },
+  { id: 'converted', label: 'Converted' },
+  { id: 'closed', label: 'Closed' },
+]
+
 export function AdminDashboardPage() {
   const navigate = useNavigate()
   const { user, signOut } = useAuth()
@@ -86,20 +109,7 @@ export function AdminDashboardPage() {
     setFetchError(null)
 
     try {
-      if (isSupabaseConfigured) {
-        const { data, error } = await supabase
-          .from('leads')
-          .select('*')
-          .order('created_at', { ascending: false })
-
-        if (error) throw error
-        setLeads(data || [])
-      } else {
-        // Fallback local storage repository
-        const raw = localStorage.getItem('onlinepos_local_leads')
-        const parsed: LeadRecord[] = raw ? JSON.parse(raw) : []
-        setLeads(parsed)
-      }
+      setLeads(await loadLeadsFromSource())
     } catch (err) {
       console.error('Error fetching leads:', err)
       setFetchError('Failed to load demo requests from database.')
@@ -108,26 +118,16 @@ export function AdminDashboardPage() {
     }
   }, [])
 
+  // Initial load. Kept separate from fetchLeads (used by the "Refresh" button) so this
+  // effect only ever resolves into a mounted component's state.
   useEffect(() => {
     let active = true
+
     async function load() {
-      setIsLoading(true)
       setFetchError(null)
-
       try {
-        if (isSupabaseConfigured) {
-          const { data, error } = await supabase
-            .from('leads')
-            .select('*')
-            .order('created_at', { ascending: false })
-
-          if (error) throw error
-          if (active) setLeads(data || [])
-        } else {
-          const raw = localStorage.getItem('onlinepos_local_leads')
-          const parsed: LeadRecord[] = raw ? JSON.parse(raw) : []
-          if (active) setLeads(parsed)
-        }
+        const data = await loadLeadsFromSource()
+        if (active) setLeads(data)
       } catch (err) {
         console.error('Error fetching leads:', err)
         if (active) setFetchError('Failed to load demo requests from database.')
@@ -136,6 +136,7 @@ export function AdminDashboardPage() {
       }
     }
     load()
+
     return () => {
       active = false
     }
@@ -333,14 +334,7 @@ export function AdminDashboardPage() {
             aria-label="Filter by status"
             className="grid grid-cols-3 gap-1 rounded-lg border border-stone-800 bg-stone-950 p-1 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5"
           >
-            {[
-              { id: 'all', label: 'All' },
-              { id: 'new', label: 'New' },
-              { id: 'contacted', label: 'Contacted' },
-              { id: 'demo_scheduled', label: 'Scheduled' },
-              { id: 'converted', label: 'Converted' },
-              { id: 'closed', label: 'Closed' },
-            ].map((tab) => (
+            {STATUS_FILTER_TABS.map((tab) => (
               <button
                 key={tab.id}
                 type="button"
@@ -546,7 +540,7 @@ export function AdminDashboardPage() {
             <div>
               <p className="mb-2 block text-xs font-semibold uppercase tracking-wider text-stone-400">Lead Status</p>
               <div role="group" aria-label="Lead status" className="flex flex-wrap items-center gap-2">
-                {(['new', 'contacted', 'demo_scheduled', 'converted', 'closed'] as StatusType[]).map((st) => {
+                {STATUS_ORDER.map((st) => {
                   const isActive = selectedLead.status === st
                   const cfg = STATUS_CONFIG[st]
                   return (

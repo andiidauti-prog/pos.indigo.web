@@ -13,6 +13,14 @@ export interface IndustryCardProps {
   className?: string
 }
 
+/** Each real product photo is used once site-wide, keyed by industry id. */
+const industryImages: Record<string, string> = {
+  restaurants: restaurantImg,
+  stores: storeImg,
+  warehouses: warehouseImg,
+  other: otherBusinessImg,
+}
+
 /**
  * Editorial industry card. Each real product photo is used once site-wide:
  * restaurants (pos-picture-334), stores (pic-2), warehouses (warehouse-pos),
@@ -20,10 +28,7 @@ export interface IndustryCardProps {
  * decorative composition instead of a repeated photo.
  */
 export function IndustryCard({ id, icon: Icon, title, description, className }: IndustryCardProps) {
-  const isRestaurant = id === 'restaurants'
-  const isStore = id === 'stores'
-  const isWarehouse = id === 'warehouses'
-  const isOther = id === 'other'
+  const image = id ? industryImages[id] : undefined
 
   return (
     <div
@@ -34,40 +39,10 @@ export function IndustryCard({ id, icon: Icon, title, description, className }: 
       )}
     >
       <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-stone-900">
-        {isRestaurant ? (
+        {image ? (
           <>
             <img
-              src={restaurantImg}
-              alt={title}
-              className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent" />
-          </>
-        ) : isStore ? (
-          <>
-            <img
-              src={storeImg}
-              alt={title}
-              className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent" />
-          </>
-        ) : isWarehouse ? (
-          <>
-            <img
-              src={warehouseImg}
-              alt={title}
-              className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent" />
-          </>
-        ) : isOther ? (
-          <>
-            <img
-              src={otherBusinessImg}
+              src={image}
               alt={title}
               className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
               loading="lazy"

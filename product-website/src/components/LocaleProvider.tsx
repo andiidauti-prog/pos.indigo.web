@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { DEFAULT_LOCALE, locales } from '@/data/locales'
 import type { Locale } from '@/types/i18n'
 import { LocaleContext } from '@/lib/locale-context'
@@ -27,10 +27,14 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = locales.find((item) => item.code === locale)?.htmlLang ?? locale
   }, [locale])
 
-  function setLocale(next: Locale) {
+  const setLocale = useCallback((next: Locale) => {
     setLocaleState(next)
     window.localStorage.setItem(STORAGE_KEY, next)
-  }
+  }, [])
 
-  return <LocaleContext.Provider value={{ locale, setLocale }}>{children}</LocaleContext.Provider>
+  // Every component reads this via useTranslations(), so keep its identity
+  // stable across renders that don't actually change the locale.
+  const value = useMemo(() => ({ locale, setLocale }), [locale, setLocale])
+
+  return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>
 }
