@@ -23,6 +23,9 @@ export const mk: Translations = {
   languageSelector: {
     selectLanguage: 'Изберете јазик',
   },
+  social: {
+    instagramLabel: 'Следете нè на Инстаграм',
+  },
   hero: {
     eyebrow: 'OninePOS',
     headlineLines: ['Вашиот бизнис.', 'Под ваша контрола.'],

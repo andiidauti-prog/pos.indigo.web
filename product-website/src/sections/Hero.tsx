@@ -2,8 +2,9 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
+import { InstagramIcon } from '@/components/icons/InstagramIcon'
 import { ProductVisualPlaceholder } from '@/components/ui/ProductVisualPlaceholder'
-import { CONTACT_ROUTE } from '@/data/navigation'
+import { CONTACT_ROUTE, INSTAGRAM_URL } from '@/data/navigation'
 import { useTranslations } from '@/lib/locale-context'
 
 export function Hero() {
@@ -54,13 +55,25 @@ export function Hero() {
             variants={contentVariants}
             className="flex flex-col gap-6 lg:gap-8"
           >
-            <motion.span
-              variants={itemVariants}
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-sm font-semibold tracking-wide text-brand-600"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-500" aria-hidden="true" />
-              {t.hero.eyebrow}
-            </motion.span>
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-sm font-semibold tracking-wide text-brand-600">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-500" aria-hidden="true" />
+                {t.hero.eyebrow}
+              </span>
+
+              {/* Most-visible spot on the page for the Instagram link: top of the
+                  fold, first row of content, right next to the brand badge. */}
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t.social.instagramLabel}
+                title={t.social.instagramLabel}
+                className="focus-ring group inline-flex h-8 w-8 items-center justify-center rounded-full border border-brand-200 bg-surface text-brand-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-400 hover:bg-brand-50 hover:shadow-md"
+              >
+                <InstagramIcon className="h-4 w-4 transition-transform duration-200 group-hover:scale-110" />
+              </a>
+            </motion.div>
 
             {/* text-display: fluid on phones/tablets, resized for the half-width column from lg.
                 Final line gets a warm brand-gradient treatment for a premium focal point. */}

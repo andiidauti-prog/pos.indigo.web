@@ -56,6 +56,11 @@ export interface LanguageSelectorTranslations {
   selectLanguage: string
 }
 
+export interface SocialTranslations {
+  /** Accessible name for the Instagram profile link (icon-only, no visible label). */
+  instagramLabel: string
+}
+
 export interface HeroTranslations {
   eyebrow: string
   headlineLines: [string, string]
@@ -188,6 +193,7 @@ export interface Translations {
   nav: NavTranslations
   footer: FooterTranslations
   languageSelector: LanguageSelectorTranslations
+  social: SocialTranslations
   hero: HeroTranslations
   coreCapabilities: CoreCapabilitiesTranslations
   industries: IndustriesTranslations

@@ -22,6 +22,9 @@ export const en: Translations = {
   languageSelector: {
     selectLanguage: 'Select language',
   },
+  social: {
+    instagramLabel: 'Follow us on Instagram',
+  },
   hero: {
     eyebrow: 'OninePOS',
     headlineLines: ['Your business.', 'Under your control.'],

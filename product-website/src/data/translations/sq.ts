@@ -22,6 +22,9 @@ export const sq: Translations = {
   languageSelector: {
     selectLanguage: 'Zgjidhni gjuhën',
   },
+  social: {
+    instagramLabel: 'Na ndiqni në Instagram',
+  },
   hero: {
     eyebrow: 'OninePOS',
     headlineLines: ['Biznesi juaj.', 'Nën kontrollin tuaj.'],

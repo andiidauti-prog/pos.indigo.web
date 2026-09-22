@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
+import { Phone } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
+import { InstagramIcon } from '@/components/icons/InstagramIcon'
 import { LanguageSelector } from '@/components/ui/LanguageSelector'
-import { CONTACT_ROUTE, footerLinkGroups } from '@/data/navigation'
+import { CONTACT_ROUTE, footerLinkGroups, INSTAGRAM_URL, PHONE_DISPLAY, PHONE_TEL } from '@/data/navigation'
 import { useTranslations } from '@/lib/locale-context'
 import logo from '@/assets/onine-pos-logo.jpg'
 
@@ -29,6 +31,26 @@ export function Footer() {
             <Button to={CONTACT_ROUTE} variant="outline" size="sm" className="w-fit">
               {t.nav.requestDemo}
             </Button>
+
+            <div className="flex items-center gap-4">
+              <a
+                href={PHONE_TEL}
+                className="focus-ring -mx-1 inline-flex min-h-11 items-center gap-2 rounded-sm px-1 text-sm text-ink-muted transition-colors hover:text-ink"
+              >
+                <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+                {PHONE_DISPLAY}
+              </a>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t.social.instagramLabel}
+                title={t.social.instagramLabel}
+                className="focus-ring group inline-flex h-8 w-8 items-center justify-center rounded-full border border-brand-200 bg-surface text-brand-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-400 hover:bg-brand-50 hover:shadow-md"
+              >
+                <InstagramIcon className="h-4 w-4 transition-transform duration-200 group-hover:scale-110" />
+              </a>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-x-12 gap-y-8 sm:gap-x-16">

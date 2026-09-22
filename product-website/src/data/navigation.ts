@@ -6,6 +6,13 @@ import type { FooterLinkGroup, NavItem } from '@/types/navigation'
  */
 export const CONTACT_ROUTE = '/contact'
 
+/** OninePOS's official Instagram profile — social links across the site point here. */
+export const INSTAGRAM_URL = 'https://www.instagram.com/onine.pos'
+
+/** OninePOS's contact phone number. `tel:` link target and its display format. */
+export const PHONE_TEL = 'tel:+38970593560'
+export const PHONE_DISPLAY = '+389 70 593 560'
+
 /**
  * Structural navigation data only — labels live in the translation dictionary
  * (`t.nav[item.id]`) so the same routes render in every locale.
